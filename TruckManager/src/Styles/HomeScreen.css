@@ -1,0 +1,9 @@
+.mySoftRectangularContainer {
+    background-color: white;
+    border: 'solid';
+    align-items: 'center';
+    justify-content: 'center';
+    width: '600px';
+    height: '350px';
+    border-radius: '10px';
+  }
