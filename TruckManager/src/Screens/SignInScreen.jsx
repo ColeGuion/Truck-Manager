@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../Styles/GlobalStyles.css';
 import '../Styles/SignInScreen.css';
 import AppInputField from '../Components/AppInputField.jsx';
@@ -7,8 +8,8 @@ import AppButton from '../Components/AppButton.jsx';
 /*-------------------------------------------------------------------------
   Sign In Component
 -------------------------------------------------------------------------*/
-export default function SignInScreen({ navigation }){
-
+export default function SignInScreen(){
+  const navigate = useNavigate();
   /*-------------------------------------------------------------------------
     React States
   -------------------------------------------------------------------------*/
@@ -50,7 +51,7 @@ export default function SignInScreen({ navigation }){
     async function loginHandler() {
       await handleLogin().then((e) => {
         if(e === true || validation) {
-          navigation.navigate("HomeScreen");
+          navigate("/home");
         }
         else if(e === false) {
           setLoginError("Invalid Credentials");
@@ -63,17 +64,17 @@ export default function SignInScreen({ navigation }){
   }
 
   const forgotPassword = () => {
-    navigation.navigate("ForgotPasswordScreen");
+    navigate("/forgotpassword");
   }
 
   /*-------------------------------------------------------------------------
     Sign In Screen
   -------------------------------------------------------------------------*/
   return(
-    <div className="globalpageContainer">
-      <div className="globalpageTitle">Sign In</div>
-      <div className="mySoftRectangularContainer">
-          {loginError.length > 0 && <div className="globalerrordiv">{loginError}</div>}
+    <div>
+      <div>Sign In</div>
+      <div>
+          {loginError.length > 0 && <div>{loginError}</div>}
           <input placeholder="Username" onChange={(e) => {
             setUsername(e.target.value)
             if(loginError.length > 0) {setLoginError("");}
@@ -82,10 +83,10 @@ export default function SignInScreen({ navigation }){
             setPassword(e.target.value);
             if(loginError.length > 0) {setLoginError("");}
           }} value={password} onKeyDown={handleKeyDown} type='password' />
-        <button className="globalforgotPassword" onClick={() => forgotPassword()}>
-          <div style={{color: '#1e90ff'}}>Forgot password</div>
+        <button onClick={() => forgotPassword()}>
+          <div >Forgot password</div>
         </button>
-        <button placeholder="Login" onClick={() => validateSignIn()}/>
+        <button onClick={() => validateSignIn()}>Login</button>
       </div>
     </div>
   )
