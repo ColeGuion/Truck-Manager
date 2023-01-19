@@ -10,10 +10,10 @@ function AppInputField({ placeholder, onChangeText, value, onKeyPress, type }) {
             backgroundColor: "#D3D3D3",
             paddingLeft: 10,
             paddingRight: 10,
-            color: colors.dark,
+            color: "#6F7378",
             maxHeight: 75,
         }} 
-            placeholder={placeholder} onChangeText={onChangeText} value={value} onKeyDown={onKeyPress} type={type} />
+            placeholder={placeholder} onChange={onChangeText} value={value} onKeyDown={onKeyPress} type={type} />
     );
 }
 

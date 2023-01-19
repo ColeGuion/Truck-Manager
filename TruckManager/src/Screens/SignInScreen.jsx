@@ -1,10 +1,8 @@
-import React, {useState, useEffect} from 'react';View
+import React, {useState, useEffect} from 'react';
 import '../Styles/GlobalStyles.css';
 import '../Styles/SignInScreen.css';
 import AppInputField from '../Components/AppInputField.jsx';
 import AppButton from '../Components/AppButton.jsx';
-
-const {width, height} = Dimensions.get('window');
 
 /*-------------------------------------------------------------------------
   Sign In Component
@@ -76,18 +74,18 @@ export default function SignInScreen({ navigation }){
       <div className="globalpageTitle">Sign In</div>
       <div className="mySoftRectangularContainer">
           {loginError.length > 0 && <div className="globalerrordiv">{loginError}</div>}
-          <AppInputField placeholder="Username" onChangediv={(divInputBox) => {
-            setUsername(divInputBox)
+          <input placeholder="Username" onChange={(e) => {
+            setUsername(e.target.value)
             if(loginError.length > 0) {setLoginError("");}
-            }} value={username} onKeyPress={handleKeyDown} />
-          <AppInputField placeholder="Password" onChangediv={(divInputBox) => {
-            setPassword(divInputBox);
+            }} value={username} onKeyDown={handleKeyDown} />
+          <input placeholder="Password" onChange={(e) => {
+            setPassword(e.target.value);
             if(loginError.length > 0) {setLoginError("");}
-          }} value={password} onKeyPress={handleKeyDown} type='password' />
+          }} value={password} onKeyDown={handleKeyDown} type='password' />
         <button className="globalforgotPassword" onClick={() => forgotPassword()}>
           <div style={{color: '#1e90ff'}}>Forgot password</div>
         </button>
-        <AppButton div="Login" onClick={() => validateSignIn()}/>
+        <button placeholder="Login" onClick={() => validateSignIn()}/>
       </div>
     </div>
   )

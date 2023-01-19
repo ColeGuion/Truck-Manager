@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import '../Styles/GlobalStyles.css';
-import '../AccountingScreen.css';
+import '../Styles/AccountingScreen.css';
 
 //This will display every invoice and all the data it has
 //TODO: refactor so it will only display data under correct truck number.
