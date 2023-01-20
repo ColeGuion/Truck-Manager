@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-import AppInputField from '../Components/AppInputField.jsx';
-import AppButton from '../Components/AppButton.jsx';
+import { useNavigate } from 'react-router-dom';
 import '../Styles/GlobalStyles.css';
 import '../Styles/ForgotPasswordScreen.css'
 
@@ -11,7 +10,7 @@ export default function ForgotPasswordScreen({ navigation }){
 /*TODO: write simple function to check for a valid usernamethen display a different 
         UI for validation (probably via email), then display reset password UI
 */
-
+const navigate = useNavigate();
 const [validatedUsername, setValidatedUsername] = useState(false);
 
 const ValidatingUsername = () => {
@@ -37,11 +36,12 @@ const ValidatingUsername = () => {
 
   return (
     <div className="mySoftRectangularContainer">
-      {usernameError.length > 0 && <input className={globalerrorinput}>{usernameError}</input>}
+      {usernameError.length > 0 && <h2>{usernameError}</h2>}
       <div className="softContainer">
-        <AppInputField placeholder="Username*" onChangeinput={(inputInputBox) => setUsername(inputInputBox)} value={username} onKeyPress={handleKeyDown}/>
+        <label htmlFor="username">Username*</label>
+        <input id="usename" onChange={(e) => setUsername(e.target.value)} value={username} onKeyDown={handleKeyDown}/>
       </div>
-      <AppButton input="Forgot Password" onClick={() => validUsername()}/>
+      <button onClick={() => validUsername()}>Forgot Password</button>
     </div>
   );
 }
@@ -61,7 +61,7 @@ const ResetPassword = () => {
       if (passwordError.length > 0) {
         setPasswordError("");
       }
-      navigation.navigate("SignInScreen");
+      navigate("/");
     }
     else {
       setPasswordError("Passwords do not match!");
@@ -77,14 +77,16 @@ const ResetPassword = () => {
 
   return (
     <div className="mySoftRectangularContainer">
-        {passwordError.length > 0 && <input className={globalerrorinput}>{passwordError}</input>}
+        {passwordError.length > 0 && <h2>{passwordError}</h2>}
         <div className="softContainer">
-          <AppInputField placeholder="New Password*" onChangeinput={(inputInputBox) => setNewPassword(inputInputBox)} value={newPassword} type="password" onKeyPress={handleKeyDown}/>
+          <label htmlFor="newpassword">New Password</label>
+          <input id="newpassword" onChange={(e) => setNewPassword(e.target.value)} value={newPassword} type="password" onKeyDown={handleKeyDown}/>
         </div>
         <div className="softContainer">
-          <AppInputField placeholder="Confirm New Password*" onChangeinput={(inputInputBox) => setNewPasswordConfirm(inputInputBox)} value={newPasswordConfirm} type="password" onKeyPress={handleKeyDown}/>
+          <label htmlFor="confriknewpassword">Confirm Password</label>
+          <input id="confirmnewpassword" onChange={(e) => setNewPasswordConfirm(e.target.value)} value={newPasswordConfirm} type="password" onKeyDown={handleKeyDown}/>
         </div>
-        <AppButton input="Reset Password" onClick={() => validPassword()}/>
+        <button onClick={() => validPassword()}>Reset Password</button>
       </div>
   );
 }
@@ -95,7 +97,7 @@ const ResetPassword = () => {
   //TODO: create and update specific to forgot password...
   return(
     <div className="globalpageContainer">
-        <input className="globalpageTitle">Forgot Password</input>
+        <h1 className="globalpageTitle">Forgot Password</h1>
         {validatedUsername === false && <ValidatingUsername />}
         {validatedUsername === true && <ResetPassword />}
     </div>
