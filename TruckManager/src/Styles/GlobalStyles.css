@@ -1,0 +1,80 @@
+.link-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.container {
+  padding-top: 100px;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.link {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    transition: border-color 0.25s;
+    margin: 10px;
+    color: rgba(255, 255, 255, 0.87);
+  }
+  .link:hover {
+    border-color: #646cff;
+    color: rgba(255, 255, 255, 0.87);
+  }
+  .link:focus,
+  .link:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+}
+.logo {
+    height: auto;
+    width: auto;
+    max-width: 300px;
+    max-height: 300px;
+}
+
+.input-field {
+    width: auto;
+    border: 1px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.input-field:focus {
+    outline: none !important;
+}
+.container-inner {
+    padding: 50px;
+    border: 1px;
+    border-radius: 20px;
+}
+.form-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: auto;
+}
+
+.fgt-pass-link:hover {
+    cursor: pointer;
+}
+
+.login-btn {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.input-label {
+    width: 100%;
+    text-align: left;
+    padding-bottom: 5px;
+}

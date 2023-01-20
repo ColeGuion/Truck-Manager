@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Styles/GlobalStyles.css';
-import '../Styles/SignInScreen.css';
 
 /*-------------------------------------------------------------------------
   Sign In Component
@@ -38,20 +37,17 @@ export default function SignInScreen(){
     return validation.accepted;
   }
 
-  const handleKeyDown = (e) => {
-    if(e.nativeEvent.key == "Enter"){
-      validateSignIn();
-    }
-  }
+
 
   //Temporary -- will eventually validate with usernames and passwords from database server.
-  const validateSignIn = () => {
+  const validateSignIn = async (e) => {
+    e.preventDefault();
     async function loginHandler() {
-      await handleLogin().then((e) => {
-        if(e === true || validation) {
+      await handleLogin().then((valid) => {
+        if(valid === true || validation) {
           navigate("/home");
         }
-        else if(e === false) {
+        else if(valid === false) {
           setLoginError("Invalid Credentials");
         }
       });
@@ -69,24 +65,29 @@ export default function SignInScreen(){
     Sign In Screen
   -------------------------------------------------------------------------*/
   return(
-    <div>
-      <div>Sign In</div>
-      <div>
-          {loginError.length > 0 && <div>{loginError}</div>}
-          <input placeholder="Username" onChange={(e) => {
-            setUsername(e.target.value)
-            if(loginError.length > 0) {setLoginError("");}
-            }} value={username} onKeyDown={handleKeyDown} />
-          <input placeholder="Password" onChange={(e) => {
-            setPassword(e.target.value);
-            if(loginError.length > 0) {setLoginError("");}
-          }} value={password} onKeyDown={handleKeyDown} type='password' />
-        <button onClick={() => forgotPassword()}>
-          <div >Forgot password</div>
-        </button>
-        <button onClick={() => validateSignIn()}>Login</button>
+      <div className="container">
+        <h1>Sign In</h1>
+        <form className="form-login" onSubmit={validateSignIn}>
+          {loginError.length > 0 && <div style={{color:'red', fontWeight:'bold', margin:'10px'}}>{loginError}</div>}
+              <label className="input-label" htmlFor='username'>Username</label>
+              <input 
+                className='input-field'
+                id='username' 
+                value={username}
+                onChange={(e) => setUsername(e.target.value)} 
+              />
+              <label className="input-label" htmlFor='password'>Password</label>
+              <input 
+                className='input-field'
+                id='password' 
+                type='password'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)} 
+              />
+          <button className="login-btn" type="submit">Login</button>
+          <span className="fgt-pass-link" onClick={() => forgotPassword()}>Forgot password</span>
+        </form>
       </div>
-    </div>
   )
     
 }
