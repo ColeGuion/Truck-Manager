@@ -2,8 +2,6 @@ import React, {useState, useEffect} from 'react';
 
 import '../Styles/GlobalStyles.css';
 import '../Styles/LoadInvoicesScreen.css';
-import AppButton from '../Components/AppButton.jsx';
-import AppInputField from '../Components/AppInputField.jsx';
 
 
 //TODO: make date useState an actual date variable so it can work with the database
@@ -76,38 +74,47 @@ export default function LoadInvoicesScreen({ navigation }){
   return (
       <div className="globalpageContainer">
         <div className="outerContainer">
-          <input className="pageTitle">
+          <h1 className="pageTitle">
             Load Ticket
-          </input>
-          {submitError.length > 0 && <input className={globalerrorinput}>{submitError}</input>}
+          </h1>
+          {submitError.length > 0 && <h2>{submitError}</h2>}
           <div className="softContainer">
-            <AppInputField placeholder="Date" onChangeinput={(inputInputBox) => setDate(inputInputBox)} value={date}/>
+            <label htmlFor="date">Date</label>
+            <input id="date" type="datetime-local" onChange={(e) => setDate(e.target.value)} value={date}/>
           </div>
           <div className="softContainer">
-            <AppInputField placeholder="Driver" onChangeinput={(inputInputBox) => setDriver(inputInputBox)} value={driver}/>
+            <label htmlFor="driver">Driver</label> 
+            <input id="driver" onChange={(e) => setDriver(e.target.value)} value={driver}/>
           </div>
           <div className="softContainer">
-            <AppInputField placeholder="Truck #" onChangeinput={(inputInputBox) => setTruckNum(inputInputBox)} value={truckNum}/>
+            <label htmlFor="trucknum">Truck #</label>
+            <input id="trucknum" onChange={(e) => setTruckNum(e.target.value)} value={truckNum}/>
           </div>
           <div className="softContainer">
-            <AppInputField placeholder="Description" onChangeinput={(inputInputBox) => setDescription(inputInputBox)} value={description}/>
+            <label htmlFor="description">Description</label>
+            <input id="description" onChange={(e) => setDescription(e.target.value)} value={description}/>
           </div>
           <div className="softContainer">
-            <AppInputField placeholder="Order #" onChangeinput={(inputInputBox) => setOrderNum(inputInputBox)} value={orderNum}/>
+          <label htmlFor="ordernum">Order #</label>
+            <input id="ordernum" onChange={(e) => setOrderNum(e.target.value)} value={orderNum}/>
           </div>
           <div className="softContainer">
-            <AppInputField placeholder="Ticket #" onChangeinput={(inputInputBox) => setTicketNum(inputInputBox)} value={ticketNum}/>
+            <label htmlFor="ticketnum">Ticket #</label>
+            <input id="ticketnum" onChange={(e) => setTicketNum(e.target.value)} value={ticketNum}/>
           </div>
           <div className="softContainer">
-            <AppInputField placeholder="Tons" onChangeinput={(inputInputBox) => setTons(inputInputBox)} value={tons}/>
+            <label htmlFor="tons">Tons</label>
+            <input id="tons" onChange={(e) => setTons(e.target.value)} value={tons}/>
           </div>
           <div className="softContainer">
-            <AppInputField placeholder="Hours" onChangeinput={(inputInputBox) => setHours(inputInputBox)} value={hours}/>
+            <label htmlFor="hours">Hours</label>
+            <input id="hours" onChange={(e) => setHours(e.target.value)} value={hours}/>
           </div>
           <div className="softContainer">
-            <AppInputField placeholder="Unit Price" onChangeinput={(inputInputBox) => setUnitPrice(inputInputBox)} value={unitPrice}/>
+            <label htmlFor="unitprice">Unit Price</label>
+            <input id="unitprice" onChange={(e) => setUnitPrice(e.target.value)} value={unitPrice}/>
           </div>
-          <AppButton input="Submit" onClick={() => handleSubmitChecker()} />
+          <button onClick={() => handleSubmitChecker()}>Submit</button>
         </div>
       </div>
   );

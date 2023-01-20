@@ -5,7 +5,7 @@ import '../Styles/GlobalStyles.css';
 import '../Styles/ForgotPasswordScreen.css'
 
 /*-------------------------------------------------------------------------
-  Forgot Password Componen"
+  Forgot Password Component"
 -------------------------------------------------------------------------*/
 export default function ForgotPasswordScreen({ navigation }){
 /*TODO: write simple function to check for a valid usernamethen display a different 

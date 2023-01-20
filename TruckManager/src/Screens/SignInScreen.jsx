@@ -2,8 +2,6 @@ import React, {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Styles/GlobalStyles.css';
 import '../Styles/SignInScreen.css';
-import AppInputField from '../Components/AppInputField.jsx';
-import AppButton from '../Components/AppButton.jsx';
 
 /*-------------------------------------------------------------------------
   Sign In Component

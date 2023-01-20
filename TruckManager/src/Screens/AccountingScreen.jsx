@@ -6,20 +6,20 @@ import '../Styles/AccountingScreen.css';
 //TODO: refactor so it will only display data under correct truck number.
 function TruckAccoutingData({invoice}) {
   return (
-    <div className="softContainer">
+    <div className="softContainer" style={{border: '2px solid', marginBottom: "20px"}}>
       <div className="cardHeader">
-        <input className="truckNum">
+        <div className="truckNum">
           Truck #: {invoice.truck_number}
-        </input>
-        <input className="driver">
+        </div>
+        <div className="driver">
           Driver: {invoice.driver_id}
-        </input>
+        </div>
       </div>
       <InvoiceData invoice={invoice}/>
       <div className="cardFooter">
-        <input className="truckTotal">
+        <div className="truckTotal">
           Truck Total:
-        </input>
+        </div>
       </div>
     </div>
   );
@@ -28,27 +28,27 @@ function TruckAccoutingData({invoice}) {
 function InvoiceData({invoice}) {
   return (
     <div className="cardBody">
-        <input>
+        <div>
           Date: {invoice.date}
-        </input>
-        <input>
+        </div>
+        <div>
           Ticket #: {invoice.ticket_number}
-        </input>
-        <input>
+        </div>
+        <div>
           Order #: {invoice.order}
-        </input>
-        <input>
+        </div>
+        <div>
           Hours: {invoice.hours}
-        </input>
-        <input>
+        </div>
+        <div>
           Tons: {invoice.tons}
-        </input>
-        <input>
+        </div>
+        <div>
           Unit Price: ${invoice.rate}
-        </input>
-        <input>
+        </div>
+        <div>
           Total: ${(invoice.rate * invoice.tons).toFixed(2)}
-        </input>
+        </div>
       </div>
   );
 }
@@ -77,9 +77,9 @@ export default function AccountingScreen(props){
   return (
     <div className="globalpageContainer">
       <div className="outerContainer">
-        <input className="title">
+        <h1 className="title">
           Invoices
-        </input>
+        </h1>
         {invoices.map((invoice) => {
           return(
             <TruckAccoutingData invoice={invoice}/>
