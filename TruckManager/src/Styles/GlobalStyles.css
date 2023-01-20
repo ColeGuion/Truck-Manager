@@ -41,7 +41,7 @@
 }
 
 .input-field {
-    width: auto;
+    width: 100%;
     border: 1px;
     padding: 10px;
     border-radius: 10px;
@@ -61,15 +61,21 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    width: auto;
+    width: 20%;
+    min-width: 300px;
 }
 
+.fgt-pass-link {
+    width: 100%;
+    text-align: right;
+    margin-right: 10px;
+    margin-top: 20px;
+}
 .fgt-pass-link:hover {
     cursor: pointer;
 }
 
 .login-btn {
-    margin-bottom: 10px;
     width: 100%;
 }
 
