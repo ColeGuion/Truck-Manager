@@ -6,8 +6,8 @@ import '../Styles/AccountingScreen.css';
 //TODO: refactor so it will only display data under correct truck number.
 function TruckAccoutingData({invoice}) {
   return (
-    <div className="softContainer" style={{border: '2px solid', marginBottom: "20px"}}>
-      <div className="cardHeader">
+    <div className="card-outer">
+      <div className="card">
         <div className="truckNum">
           Truck #: {invoice.truck_number}
         </div>
@@ -16,7 +16,7 @@ function TruckAccoutingData({invoice}) {
         </div>
       </div>
       <InvoiceData invoice={invoice}/>
-      <div className="cardFooter">
+      <div className="card-bottom">
         <div className="truckTotal">
           Truck Total:
         </div>
@@ -27,7 +27,7 @@ function TruckAccoutingData({invoice}) {
 //This will display date, ticket_number, order, hours, tons, and rate
 function InvoiceData({invoice}) {
   return (
-    <div className="cardBody">
+    <div className="card-inner">
         <div>
           Date: {invoice.date}
         </div>
@@ -75,11 +75,9 @@ export default function AccountingScreen(props){
     Home Screen
   -------------------------------------------------------------------------*/
   return (
-    <div className="globalpageContainer">
-      <div className="outerContainer">
-        <h1 className="title">
-          Invoices
-        </h1>
+    <div className="container">
+      <h1>Invoices</h1>
+        <div className="cards">
         {invoices.map((invoice, idx) => {
           return(
             <TruckAccoutingData invoice={invoice} key={idx}/>
