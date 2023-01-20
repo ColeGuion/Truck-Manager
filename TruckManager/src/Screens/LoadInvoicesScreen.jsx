@@ -45,7 +45,8 @@ export default function LoadInvoicesScreen({ navigation }){
     setUnitPrice("");
   }
 
-  const handleSubmitChecker = () => {
+  const handleSubmitChecker = async (e) => {
+    e.preventDefault();
     if(date.length == 0 || driver.length == 0 || truckNum.length == 0 || description.length == 0 || orderNum.length == 0 
       || ticketNum.length == 0 || tons.length == 0 || hours.length == 0 || unitPrice.length == 0){
         setSubmitError("Every blank must be filled in!");
@@ -72,50 +73,50 @@ export default function LoadInvoicesScreen({ navigation }){
     Home Screen
   -------------------------------------------------------------------------*/
   return (
-      <div className="globalpageContainer">
-        <div className="outerContainer">
-          <h1 className="pageTitle">
+      <div className="container">
+          <h1>
             Load Ticket
           </h1>
-          {submitError.length > 0 && <h2>{submitError}</h2>}
-          <div className="softContainer">
-            <label htmlFor="date">Date</label>
-            <input id="date" type="datetime-local" onChange={(e) => setDate(e.target.value)} value={date}/>
-          </div>
-          <div className="softContainer">
-            <label htmlFor="driver">Driver</label> 
-            <input id="driver" onChange={(e) => setDriver(e.target.value)} value={driver}/>
-          </div>
-          <div className="softContainer">
-            <label htmlFor="trucknum">Truck #</label>
-            <input id="trucknum" onChange={(e) => setTruckNum(e.target.value)} value={truckNum}/>
-          </div>
-          <div className="softContainer">
-            <label htmlFor="description">Description</label>
-            <input id="description" onChange={(e) => setDescription(e.target.value)} value={description}/>
-          </div>
-          <div className="softContainer">
-          <label htmlFor="ordernum">Order #</label>
-            <input id="ordernum" onChange={(e) => setOrderNum(e.target.value)} value={orderNum}/>
-          </div>
-          <div className="softContainer">
-            <label htmlFor="ticketnum">Ticket #</label>
-            <input id="ticketnum" onChange={(e) => setTicketNum(e.target.value)} value={ticketNum}/>
-          </div>
-          <div className="softContainer">
-            <label htmlFor="tons">Tons</label>
-            <input id="tons" onChange={(e) => setTons(e.target.value)} value={tons}/>
-          </div>
-          <div className="softContainer">
-            <label htmlFor="hours">Hours</label>
-            <input id="hours" onChange={(e) => setHours(e.target.value)} value={hours}/>
-          </div>
-          <div className="softContainer">
-            <label htmlFor="unitprice">Unit Price</label>
-            <input id="unitprice" onChange={(e) => setUnitPrice(e.target.value)} value={unitPrice}/>
-          </div>
-          <button onClick={() => handleSubmitChecker()}>Submit</button>
-        </div>
+          <form className="form-load" onSubmit={handleSubmitChecker}>
+            {submitError.length > 0 && <div style={{color:'red', fontWeight:'bold', margin:'10px'}}>{submitError}</div>}
+            <div className="softContainer">
+              <label className="load-label" htmlFor="date">Date</label>
+              <input className="load-input-field" id="date" type="datetime-local" onChange={(e) => setDate(e.target.value)} value={date}/>
+            </div>
+            <div className="softContainer">
+              <label className="load-label" htmlFor="driver">Driver</label> 
+              <input className="load-input-field" id="driver" onChange={(e) => setDriver(e.target.value)} value={driver}/>
+            </div>
+            <div className="softContainer">
+              <label className="load-label" htmlFor="trucknum">Truck #</label>
+              <input className="load-input-field" id="trucknum" onChange={(e) => setTruckNum(e.target.value)} value={truckNum}/>
+            </div>
+            <div className="softContainer">
+              <label className="load-label" htmlFor="description">Description</label>
+              <input className="load-input-field" id="description" onChange={(e) => setDescription(e.target.value)} value={description}/>
+            </div>
+            <div className="softContainer">
+            <label className="load-label" htmlFor="ordernum">Order #</label>
+              <input className="load-input-field"id="ordernum" onChange={(e) => setOrderNum(e.target.value)} value={orderNum}/>
+            </div>
+            <div className="softContainer">
+              <label className="load-label" htmlFor="ticketnum">Ticket #</label>
+              <input className="load-input-field" id="ticketnum" onChange={(e) => setTicketNum(e.target.value)} value={ticketNum}/>
+            </div>
+            <div className="softContainer">
+              <label className="load-label" htmlFor="tons">Tons</label>
+              <input className="load-input-field" id="tons" onChange={(e) => setTons(e.target.value)} value={tons}/>
+            </div>
+            <div className="softContainer">
+              <label className="load-label" htmlFor="hours">Hours</label>
+              <input className="load-input-field" id="hours" onChange={(e) => setHours(e.target.value)} value={hours}/>
+            </div>
+            <div className="softContainer">
+              <label className="load-label" htmlFor="unitprice">Unit Price</label>
+              <input className="load-input-field" id="unitprice" onChange={(e) => setUnitPrice(e.target.value)} value={unitPrice}/>
+            </div>
+            <button className="load-btn" type="submit">Submit</button>
+          </form>
       </div>
   );
 

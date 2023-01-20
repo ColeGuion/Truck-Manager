@@ -80,9 +80,9 @@ export default function AccountingScreen(props){
         <h1 className="title">
           Invoices
         </h1>
-        {invoices.map((invoice) => {
+        {invoices.map((invoice, idx) => {
           return(
-            <TruckAccoutingData invoice={invoice}/>
+            <TruckAccoutingData invoice={invoice} key={idx}/>
           );
         })}
       </div>

@@ -18,7 +18,8 @@ const ValidatingUsername = () => {
   const [username, setUsername] = useState("");
   const [usernameError, setUsernameError] = useState("");
 
-  const validUsername = () => {
+  const validUsername = async (e) => {
+    e.preventDefault();
     if (username === "admin") { //this will eventually run against all username in database to see if there is a match
       setValidatedUsername(true);
     }
@@ -35,14 +36,14 @@ const ValidatingUsername = () => {
 
 
   return (
-    <div className="mySoftRectangularContainer">
-      {usernameError.length > 0 && <h2>{usernameError}</h2>}
+    <form className="form-fgt-pass" onSubmit={validUsername}>
+      {usernameError.length > 0 && <div style={{color:'red', fontWeight:'bold', margin:'10px'}}>{usernameError}</div>}
       <div className="softContainer">
-        <label htmlFor="username">Username*</label>
-        <input id="usename" onChange={(e) => setUsername(e.target.value)} value={username} onKeyDown={handleKeyDown}/>
+        <label className="input-label" htmlFor="username">Username*</label>
+        <input className="input-field" id="usename" onChange={(e) => setUsername(e.target.value)} value={username}/>
       </div>
-      <button onClick={() => validUsername()}>Forgot Password</button>
-    </div>
+      <button className="login-btn">Forgot Password</button>
+    </form>
   );
 }
 
@@ -53,7 +54,8 @@ const ResetPassword = () => {
   const [validatedPassword, setValidatedPassword] = useState(false);
   const [passwordError, setPasswordError] = useState("");
 
-  const validPassword = () => {
+  const validPassword = async (e) => {
+    e.preventDefault();
     if (newPassword === newPasswordConfirm) { //this will eventually run against pararameters for a password, such as 8 characters in length, number, etc. it will also ensure it is not the old password
       setValidatedPassword(true);
       setNewPassword("");
@@ -76,18 +78,18 @@ const ResetPassword = () => {
 
 
   return (
-    <div className="mySoftRectangularContainer">
-        {passwordError.length > 0 && <h2>{passwordError}</h2>}
+    <form className="form-fgt-pass" onSubmit={validPassword}>
+        {passwordError.length > 0 && <div style={{color:'red', fontWeight:'bold', margin:'10px'}}>{passwordError}</div>}
         <div className="softContainer">
-          <label htmlFor="newpassword">New Password</label>
-          <input id="newpassword" onChange={(e) => setNewPassword(e.target.value)} value={newPassword} type="password" onKeyDown={handleKeyDown}/>
+          <label className="input-label" htmlFor="newpassword">New Password</label>
+          <input className="input-field" id="newpassword" onChange={(e) => setNewPassword(e.target.value)} value={newPassword} type="password"/>
         </div>
         <div className="softContainer">
-          <label htmlFor="confriknewpassword">Confirm Password</label>
-          <input id="confirmnewpassword" onChange={(e) => setNewPasswordConfirm(e.target.value)} value={newPasswordConfirm} type="password" onKeyDown={handleKeyDown}/>
+          <label className="input-label" htmlFor="confriknewpassword">Confirm Password</label>
+          <input className="input-field" id="confirmnewpassword" onChange={(e) => setNewPasswordConfirm(e.target.value)} value={newPasswordConfirm} type="password"/>
         </div>
-        <button onClick={() => validPassword()}>Reset Password</button>
-      </div>
+        <button className="login-btn">Reset Password</button>
+    </form>
   );
 }
 
@@ -96,8 +98,8 @@ const ResetPassword = () => {
   -------------------------------------------------------------------------*/
   //TODO: create and update specific to forgot password...
   return(
-    <div className="globalpageContainer">
-        <h1 className="globalpageTitle">Forgot Password</h1>
+    <div className="container">
+        <h1>Forgot Password</h1>
         {validatedUsername === false && <ValidatingUsername />}
         {validatedUsername === true && <ResetPassword />}
     </div>

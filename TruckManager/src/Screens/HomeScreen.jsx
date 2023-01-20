@@ -13,18 +13,17 @@ export default function HomeScreen(){
     Home Screen
   -------------------------------------------------------------------------*/
   return (
-      <div className="globalpageContainer">
-        <button className="globalforgotPassword" onClick = { () => navigate("/user") }>
+      <div className="container">
+        <div className="user-profile-link" onClick = { () => navigate("/user") }>
           User Profile
-        </button>
-        <h1 className="globalpageTitle">Truck Manager</h1>
-        <button className="globalbutton" onClick = { () => navigate("/loadinvoice") }>
+        </div>
+        <h1>Truck Manager</h1>
+        <button className="home-btns" onClick = { () => navigate("/loadinvoice") }>
           Submit Load Ticket
         </button>
-        <button className="globalbutton" onClick = { () => navigate("/accounting") }>
+        <button className="home-btns" onClick = { () => navigate("/accounting") }>
           Invoices
         </button>
       </div>
   );
-
 }
