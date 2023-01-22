@@ -26,10 +26,12 @@ function TruckAccoutingData({invoice}) {
 }
 //This will display date, ticket_number, order, hours, tons, and rate
 function InvoiceData({invoice}) {
+  let formattedDate = new Date(invoice.date);
+  formattedDate = formattedDate.toLocaleDateString() + ' ' + formattedDate.toLocaleTimeString();
   return (
     <div className="card-inner">
         <div>
-          Date: {invoice.date}
+          Date: {formattedDate}
         </div>
         <div>
           Ticket #: {invoice.ticket_number}
