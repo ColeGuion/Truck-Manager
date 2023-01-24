@@ -2,8 +2,13 @@ import React, {useState, useEffect} from 'react';
 import '../Styles/GlobalStyles.css';
 import '../Styles/AccountingScreen.css';
 
-//This will display every invoice and all the data it has
-//TODO: refactor so it will only display data under correct truck number.
+/*-------------------------------------------------------------------------
+  Accounting Data Component
+
+  This will display every invoice and all the data it has.
+
+  TODO: refactor so it will only display data under correct truck number.
+-------------------------------------------------------------------------*/
 function TruckAccoutingData({invoice}) {
   return (
     <div className="card-outer">
@@ -24,7 +29,11 @@ function TruckAccoutingData({invoice}) {
     </div>
   );
 }
-//This will display date, ticket_number, order, hours, tons, and rate
+/*-------------------------------------------------------------------------
+  Invoice Data Component
+
+  Displays date, ticket_number, order, hours, tons, and rate
+-------------------------------------------------------------------------*/
 function InvoiceData({invoice}) {
   let formattedDate = new Date(invoice.date);
   formattedDate = formattedDate.toLocaleDateString() + ' ' + formattedDate.toLocaleTimeString();
@@ -56,13 +65,24 @@ function InvoiceData({invoice}) {
 }
 
 /*-------------------------------------------------------------------------
-  Home Screen Component
+  Accounting Screen Component
 -------------------------------------------------------------------------*/
 export default function AccountingScreen(props){
 
   const apiURL = 'http://localhost:5000'
+
+  /*-------------------------------------------------------------------------
+    Create "invoices" state variable and function to update it
+  -------------------------------------------------------------------------*/
   const [invoices, setInvoices] = useState([{}]);
 
+  /*-------------------------------------------------------------------------
+    useEffect() is a hook that takes a callback and a dependency array.
+    The dependency array determines when the callback is executed, which when left
+    empty is when the component mounts/unmounts. The callback creates an
+    asynchronous fetch to the API which returns a response object. The JSON is
+    obtained from the response and used to set the "invoices" state variable.
+  -------------------------------------------------------------------------*/
   useEffect(() => {
     async function fetchInvoices() {
       const response = await fetch(`${apiURL}/invoices`);
@@ -70,11 +90,14 @@ export default function AccountingScreen(props){
       setInvoices(newInvoices);
     }
     fetchInvoices();
-    
-      
-  },[])
+  }, []);
+
   /*-------------------------------------------------------------------------
-    Home Screen
+    Accounting Screen
+
+    Map function is used on state variable to itterate through each
+    invoice and create a component for each one. This is included in the
+    jsx as an object, as denoted by the curly braces.
   -------------------------------------------------------------------------*/
   return (
     <div className="container">
