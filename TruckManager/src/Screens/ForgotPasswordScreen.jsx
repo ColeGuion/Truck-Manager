@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Styles/GlobalStyles.css';
 import '../Styles/ForgotPasswordScreen.css'
@@ -14,7 +14,96 @@ const APIURL = "http://localhost:5000";
 const navigate = useNavigate();
 const [validatedUsername, setValidatedUsername] = useState(false);
 const [globalUsername, setGlobalUsername] = useState("");
+const [isValidated, setIsValidated] = useState(false);
+const [emailAddress, setEmailAddress] = useState("");
+const [sentOTPEmail, setSentOTPEmail] = useState(false);
 
+/*
+-Author: Mason Otto
+-Last Modified: 1/23/2023
+-Description: This is a React Component that is displayed to verify the OTP sent to the requesting user's email
+-Return: HTML Code that allows the user to enter the OTP
+TODO: Test code and refactor
+*/ 
+const VerifyOTP = () => {
+  const [otpError, setOTPError] = useState("");
+  const [oneTimePin, setOneTimePin] = useState("");
+
+  /*
+  -Author: Mason Otto
+  -Last Modified: 1/23/2023
+  -Description: This fetches to the backend API to generate a OTP and get the users email address
+  -Return: N/A
+  TODO: Test code and refactor
+  */ 
+  async function getOTPEmail(){
+    const response = await fetch(`${APIURL}/requestotp`, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: globalUsername
+      })
+    });
+    const sentEmail = await response.json();
+    if(sentEmail.response === "EMAIL SENT") {
+      setSentOTPEmail(true);
+      setEmailAddress(sentEmail.email);
+    }
+  }
+  /*
+  -Author: Mason Otto
+  -Last Modified: 1/23/2023
+  -Description: This fetches to the backend API to verify that the input OTP is correct
+  -Return: N/A
+  TODO: Test code and refactor
+  */ 
+  async function validateOTP(e) {
+    e.preventDefault();
+    const response = await fetch(`${APIURL}/verifyotp`, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: globalUsername,
+        otp: oneTimePin,
+      })
+    });
+    const verified = await response.json();
+    if(verified.response === "VERIFIED") {
+      setIsValidated(true);
+    }
+    else {
+      setOTPError(`Invalid One Time Pin! Check email sent to ${emailAddress}`);
+    }
+  }
+  if(!sentOTPEmail) {
+    getOTPEmail();
+  }
+  
+  
+  return (
+    <>
+      {sentOTPEmail && 
+        <div className="container">
+          {!(otpError.length > 0) && <p>A One Time Pin was sent to {emailAddress}</p>}
+          {otpError.length > 0 && <div style={{color:'red', fontWeight:'bold', margin:'10px'}}>{otpError}</div>}
+          <form className="form-verify-otp" onSubmit={validateOTP}>
+            <label style={{width: "100%"}} htmlFor="otp">
+              Enter One Time Pin
+            </label>
+            <input className="input-field" id="otp" type="number" onChange={(e) => {if(e.target.value.length <= 6) setOneTimePin(e.target.value)}} value={oneTimePin}/>
+            
+            <button className="login-btn">Verify</button>
+          </form>
+        </div>}
+    </>
+  );
+}
 
 const ValidatingUsername = () => {
 
@@ -109,7 +198,8 @@ const ResetPassword = () => {
     <div className="container">
         <h1>Forgot Password</h1>
         {validatedUsername === false && <ValidatingUsername />}
-        {validatedUsername === true && <ResetPassword />}
+        {validatedUsername === true && isValidated === true && <ResetPassword />}
+        {validatedUsername === true && isValidated === false && <VerifyOTP />}
     </div>
   )
     
