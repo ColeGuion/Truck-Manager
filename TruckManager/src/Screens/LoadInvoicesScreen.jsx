@@ -15,7 +15,7 @@ export default function LoadInvoicesScreen({ navigation }){
   //      2.) error handling/input handling
   const apiURL = 'http://localhost:5000'
   const handleSubmit = async () => {
-    await fetch(`${apiURL}/invoices`, {
+    const response = await fetch(`${apiURL}/invoices`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -33,7 +33,12 @@ export default function LoadInvoicesScreen({ navigation }){
         unitPrice: unitPrice
       })
     });
-
+    const created = await response.json();
+    //if json response does not container a true created object then this alerts the user the submission failed and to try again. -MXO
+    if (!created.created) {
+      alert("Load ticket submission FAILED. Try again")
+    }
+    
     setDate("");
     setDriver("");
     setTruckNum("");
