@@ -15,19 +15,48 @@ export default function SignInScreen(){
   /*-------------------------------------------------------------------------
     React States
   -------------------------------------------------------------------------*/
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [employeeId, setEmployeeId] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [submitError, setSubmitError] = useState("");
 
   /*-------------------------------------------------------------------------
     Methods
   -------------------------------------------------------------------------*/
+  const apiURL = 'http://localhost:5000'
   const handleRegister = async () => {
     //handle adding user information into the database
-    //handle navigating to the login page
+    const response = await fetch(`${apiURL}/register`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          employeeId: employeeId,
+          username: username,
+          passcode: password,
+          email: email
+        })
+    });
+    const created = await response.json();
+    //TODO: error handling
     navigate("/..");
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if(employeeId.length == 0 || username.length == 0 || email.length == 0 ||
+        password.length == 0 || confirmPassword.length == 0){
+        setSubmitError("Every blank must be filled in!");
+        return;
+    }
+    else if(submitError.length > 0) {
+      setSubmitError("");
+    }
+    handleRegister();
   }
     
   /*-------------------------------------------------------------------------
@@ -36,21 +65,22 @@ export default function SignInScreen(){
   return(
       <div className="container">
         <h1>Create Account</h1>
-        <form className="form-register" onSubmit={handleRegister} autoComplete="off">
-            <label className="input-label" htmlFor='firstName'>First Name</label>
+        <form className="form-register" onSubmit={handleSubmit} autoComplete="off">
+            {submitError.length > 0 && <div style={{color:'red', fontWeight:'bold', margin:'10px'}}>{submitError}</div>}
+            <label className="input-label" htmlFor='employeeId'>Employee ID</label>
             <input 
                 className='input-field'
-                id='firstName' 
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
+                id='employeeId' 
+                value={employeeId}
+                onChange={(e) => setEmployeeId(e.target.value)}
                 autoComplete="off"
             />
-            <label className="input-label" htmlFor='lastName'>Last Name</label>
+            <label className="input-label" htmlFor='username'>Username</label>
             <input 
                 className='input-field'
-                id='lastName'
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)} 
+                id='username' 
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 autoComplete="off"
             />
             <label className="input-label" htmlFor='email'>Email</label>
