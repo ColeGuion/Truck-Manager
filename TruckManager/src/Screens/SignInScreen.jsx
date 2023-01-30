@@ -93,7 +93,7 @@ export default function SignInScreen(){
                 onChange={(e) => setPassword(e.target.value)} 
               />
           <button className="login-btn" type="submit">Login</button>
-          <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", width: "100%", paddingTop: 10}}>
+          <div className="sign-in-link-container">
             <span className="register-link" onClick={() => register()}>Create account</span>
             <span className="fgt-pass-link" onClick={() => forgotPassword()}>Forgot password</span>
           </div>
