@@ -65,16 +65,6 @@
     min-width: 300px;
 }
 
-.fgt-pass-link {
-    width: 100%;
-    text-align: right;
-    margin-right: 10px;
-    margin-top: 20px;
-}
-.fgt-pass-link:hover {
-    cursor: pointer;
-}
-
 .login-btn {
     width: 100%;
 }

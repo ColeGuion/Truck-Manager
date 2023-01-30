@@ -1,0 +1,7 @@
+.sign-in-link {
+    margin-top: 10px;
+}
+
+.sign-in-link:hover {
+    cursor: pointer;
+}
