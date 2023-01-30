@@ -58,6 +58,7 @@ export default function LoadInvoicesScreen({ navigation }){
     if(date.length == 0 || driver.length == 0 || truckNum.length == 0 || description.length == 0 || orderNum.length == 0 
       || ticketNum.length == 0 || tons.length == 0 || hours.length == 0 || unitPrice.length == 0){
         setSubmitError("Every blank must be filled in!");
+        window.scrollTo(0, 0);
         return;
     }
     else if(submitError.length > 0) {
@@ -86,7 +87,7 @@ export default function LoadInvoicesScreen({ navigation }){
             Load Ticket
           </h1>
           <form className="form-load" onSubmit={handleSubmitChecker}>
-            {submitError.length > 0 && <div style={{color:'red', fontWeight:'bold', margin:'10px'}}>{submitError}</div>}
+            {submitError.length > 0 && <div id="error" style={{color:'red', fontWeight:'bold', margin:'10px'}}>{submitError}</div>}
             <div className="softContainer">
               <label className="load-label" htmlFor="date">Date</label>
               <input className="load-input-field" id="date" type="datetime-local" onChange={(e) => setDate(e.target.value)} value={date}/>
