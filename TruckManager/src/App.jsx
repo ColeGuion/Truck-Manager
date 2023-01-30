@@ -1,3 +1,6 @@
+/*-------------------------------------------------------------------
+  Import dependencies
+-------------------------------------------------------------------*/
 import React from 'react';
 import SignInScreen from './Screens/SignInScreen.jsx';
 import HomeScreen from './Screens/HomeScreen.jsx';
@@ -13,6 +16,11 @@ import {
 } from "react-router-dom";
 import './App.css'
 
+/*-------------------------------------------------------------------
+    Top level access to application
+
+    Includes browser router to facilitate routing between pages.
+-------------------------------------------------------------------*/
 function App() {
   const router = createBrowserRouter([
     {

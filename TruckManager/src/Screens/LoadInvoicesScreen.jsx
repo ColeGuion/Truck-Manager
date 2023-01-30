@@ -1,3 +1,6 @@
+/*-------------------------------------------------------------------------
+  Import dependencies
+-------------------------------------------------------------------------*/
 import React, {useState, useEffect} from 'react';
 
 import '../Styles/GlobalStyles.css';
@@ -6,7 +9,7 @@ import '../Styles/LoadInvoicesScreen.css';
 
 //TODO: make date useState an actual date variable so it can work with the database
 /*-------------------------------------------------------------------------
-  Home Screen Component
+  Load Invoices Component
 -------------------------------------------------------------------------*/
 export default function LoadInvoicesScreen({ navigation }){
 
@@ -75,7 +78,7 @@ export default function LoadInvoicesScreen({ navigation }){
   const [submitError, setSubmitError] = useState("");
 
   /*-------------------------------------------------------------------------
-    Home Screen
+    Load Invoices Screen
   -------------------------------------------------------------------------*/
   return (
       <div className="container">

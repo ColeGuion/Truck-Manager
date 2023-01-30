@@ -1,3 +1,6 @@
+/*-------------------------------------------------------------------------
+  Import dependencies
+-------------------------------------------------------------------------*/
 import React, {useState, useEffect} from 'react';
 import '../Styles/GlobalStyles.css';
 import '../Styles/AccountingScreen.css';
@@ -96,8 +99,8 @@ export default function AccountingScreen(props){
     Accounting Screen
 
     Map function is used on state variable to itterate through each
-    invoice and create a component for each one. This is included in the
-    jsx as an object, as denoted by the curly braces.
+    invoice and create a TruckAccountingData component for each one. This
+    is included in the jsx as an object, as denoted by the curly braces.
   -------------------------------------------------------------------------*/
   return (
     <div className="container">

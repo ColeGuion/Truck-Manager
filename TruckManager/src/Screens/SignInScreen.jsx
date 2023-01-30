@@ -1,4 +1,6 @@
-import React, {useState, useEffect} from 'react';
+/*-------------------------------------------------------------------------
+  Import dependencies
+-------------------------------------------------------------------------*/import React, {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Styles/GlobalStyles.css';
 

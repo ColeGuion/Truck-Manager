@@ -1,3 +1,6 @@
+/*-------------------------------------------------------------------------
+  Import dependencies
+-------------------------------------------------------------------------*/
 import React, {useState, useEffect} from 'react';
 import '../Styles/GlobalStyles.css';
 import '../Styles/UserProfileScreen.css';
