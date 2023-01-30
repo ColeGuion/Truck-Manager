@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Styles/GlobalStyles.css';
-import '../Styles/HomeScreen.css'
+import '../Styles/HomeScreen.css';
 
 /*-------------------------------------------------------------------------
   Home Screen Component

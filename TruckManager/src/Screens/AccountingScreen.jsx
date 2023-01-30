@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import '../Styles/GlobalStyles.css';
 import '../Styles/AccountingScreen.css';
+import API_URL from'../config.json';
 
 /*-------------------------------------------------------------------------
   Accounting Data Component
@@ -69,7 +70,7 @@ function InvoiceData({invoice}) {
 -------------------------------------------------------------------------*/
 export default function AccountingScreen(props){
 
-  const apiURL = 'http://localhost:5000'
+  const apiURL = "http://localhost:5000";
 
   /*-------------------------------------------------------------------------
     Create "invoices" state variable and function to update it
