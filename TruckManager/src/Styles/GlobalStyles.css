@@ -67,10 +67,8 @@
 
 .fgt-pass-link {
     width: 100%;
-    text-align: right;
-    margin-right: 10px;
-    margin-top: 20px;
 }
+
 .fgt-pass-link:hover {
     cursor: pointer;
 }
@@ -83,4 +81,12 @@
     width: 100%;
     text-align: left;
     padding-bottom: 5px;
+}
+
+.register-link {
+    width: 100%;
+}
+
+.register-link:hover {
+    cursor: pointer;
 }

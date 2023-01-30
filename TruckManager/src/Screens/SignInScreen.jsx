@@ -1,8 +1,10 @@
 /*-------------------------------------------------------------------------
   Import dependencies
--------------------------------------------------------------------------*/import React, {useState, useEffect} from 'react';
+-------------------------------------------------------------------------*/
+import React, {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Styles/GlobalStyles.css';
+import '../Styles/SignInScreen.css';
 
 /*-------------------------------------------------------------------------
   Sign In Component
@@ -63,6 +65,10 @@ export default function SignInScreen(){
     navigate("/forgotpassword");
   }
 
+  const register = () => {
+    navigate("/register");
+  }
+
   /*-------------------------------------------------------------------------
     Sign In Screen
   -------------------------------------------------------------------------*/
@@ -87,7 +93,10 @@ export default function SignInScreen(){
                 onChange={(e) => setPassword(e.target.value)} 
               />
           <button className="login-btn" type="submit">Login</button>
-          <span className="fgt-pass-link" onClick={() => forgotPassword()}>Forgot password</span>
+          <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", width: "100%", paddingTop: 10}}>
+            <span className="register-link" onClick={() => register()}>Create account</span>
+            <span className="fgt-pass-link" onClick={() => forgotPassword()}>Forgot password</span>
+          </div>
         </form>
       </div>
   )

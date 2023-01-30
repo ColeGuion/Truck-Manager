@@ -1,0 +1,25 @@
+
+
+.fgt-pass-link {
+    width: 100%;
+}
+
+.fgt-pass-link:hover {
+    cursor: pointer;
+}
+
+.register-link {
+    width: 100%;
+}
+
+.register-link:hover {
+    cursor: pointer;
+}
+
+.sign-in-link-container {
+    display: "flex";
+    flex-direction: "row";
+    justify-content: "space-between";
+    width: "100%";
+    padding-top: 10;
+}

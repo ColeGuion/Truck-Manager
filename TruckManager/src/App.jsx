@@ -4,6 +4,7 @@
 import React from 'react';
 import SignInScreen from './Screens/SignInScreen.jsx';
 import HomeScreen from './Screens/HomeScreen.jsx';
+import RegistrationScreen from './Screens/RegistrationScreen.jsx';
 import ForgotPasswordScreen from './Screens/ForgotPasswordScreen.jsx';
 import LoadInvoicesScreen from './Screens/LoadInvoicesScreen.jsx';
 import AccountingScreen from './Screens/AccountingScreen.jsx';
@@ -28,6 +29,9 @@ function App() {
     },
     {
       path: "/home", element: <HomeScreen />, errorElement: <ErrorBoundary />,
+    },
+    {
+      path: "/register", element: <RegistrationScreen />, errorElement: <ErrorBoundary />,
     },
     {
       path: "/forgotpassword", element: <ForgotPasswordScreen />, errorElement: <ErrorBoundary />,
