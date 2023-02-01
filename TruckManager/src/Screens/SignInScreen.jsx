@@ -36,7 +36,7 @@ export default function SignInScreen(){
       })
     });
     const validation = await response.json();
-    console.log(validation.response);
+    //console.log(validation.response);
     setValidation(validation.accepted);
     return validation.accepted;
   }
