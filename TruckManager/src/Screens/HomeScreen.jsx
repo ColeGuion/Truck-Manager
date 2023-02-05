@@ -11,6 +11,17 @@ import '../Styles/HomeScreen.css';
   Home Screen Component
 -------------------------------------------------------------------------*/
 export default function HomeScreen(){
+
+  const [currentUser, setCurrentUser] = useState({});
+    useEffect(() => {
+        async function fetchCurrentUser() {
+            const response = await fetch(`http://127.0.0.1:5000/user`,{credentials: 'include'});
+            const newCurrentUser = await response.json()
+            setCurrentUser(newCurrentUser);
+        }
+        fetchCurrentUser();
+    },[])
+
   const navigate = useNavigate();
   /*-------------------------------------------------------------------------
     Home Screen

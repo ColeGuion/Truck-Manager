@@ -25,7 +25,7 @@ export default function SignInScreen(){
   /*-------------------------------------------------------------------------
     Methods
   -------------------------------------------------------------------------*/
-  const apiURL = 'http://localhost:5000'
+  const apiURL = 'http://127.0.0.1:5000'
   const handleRegister = async () => {
     //handle adding user information into the database
     const response = await fetch(`${apiURL}/register`, {
@@ -43,7 +43,12 @@ export default function SignInScreen(){
     });
     const created = await response.json();
     //TODO: error handling
-    navigate("/..");
+    if(created.message === "FAILED") {
+      setSubmitError("FAILED TO CREATE ACCOUNT");
+    }
+    else {
+      navigate("/..");
+    }
   }
 
   const handleSubmit = async (e) => {

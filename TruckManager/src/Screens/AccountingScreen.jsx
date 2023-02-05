@@ -73,7 +73,7 @@ function InvoiceData({invoice}) {
 -------------------------------------------------------------------------*/
 export default function AccountingScreen(props){
 
-  const apiURL = "http://localhost:5000";
+  const apiURL = "http://127.0.0.1:5000";
 
   /*-------------------------------------------------------------------------
     Create "invoices" state variable and function to update it
@@ -89,7 +89,7 @@ export default function AccountingScreen(props){
   -------------------------------------------------------------------------*/
   useEffect(() => {
     async function fetchInvoices() {
-      const response = await fetch(`${apiURL}/invoices`);
+      const response = await fetch(`${apiURL}/invoices`, {credentials: 'include'});
       const newInvoices = await response.json();
       setInvoices(newInvoices);
     }

@@ -16,7 +16,7 @@ export default function LoadInvoicesScreen({ navigation }){
   //this function will submit the input data to the backend to be uploaded to the database
   //TODO: 1.) submit the data - DONE - MXO
   //      2.) error handling/input handling
-  const apiURL = 'http://localhost:5000'
+  const apiURL = 'http://127.0.0.1:5000'
   const handleSubmit = async () => {
     const response = await fetch(`${apiURL}/invoices`, {
       method: 'POST',
@@ -24,6 +24,7 @@ export default function LoadInvoicesScreen({ navigation }){
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
+      credentials: 'include',
       body: JSON.stringify({
         date: date,
         driver: driver,

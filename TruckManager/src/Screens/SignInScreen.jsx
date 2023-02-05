@@ -22,7 +22,7 @@ export default function SignInScreen(){
   /*-------------------------------------------------------------------------
     Methods
   -------------------------------------------------------------------------*/
-  const apiURL = 'http://localhost:5000'
+  const apiURL = 'http://127.0.0.1:5000'
   const handleLogin = async () => {
     const response = await fetch(`${apiURL}/login`, {
       method: 'POST',
@@ -30,6 +30,7 @@ export default function SignInScreen(){
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
+      credentials: 'include',
       body: JSON.stringify({
         username: username,
         password: password
