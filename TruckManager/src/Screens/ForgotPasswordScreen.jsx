@@ -5,8 +5,9 @@ import React, {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Styles/GlobalStyles.css';
 import '../Styles/ForgotPasswordScreen.css'
+import API_URL from'../config.json';
 
-const APIURL = "http://127.0.0.1:5000";
+const APIURL = API_URL.API_URL;
 
 function ResetPassword(props) {
   const navigate = useNavigate();

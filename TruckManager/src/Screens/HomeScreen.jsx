@@ -6,16 +6,17 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Styles/GlobalStyles.css';
 import '../Styles/HomeScreen.css';
+import API_URL from'../config.json';
 
 /*-------------------------------------------------------------------------
   Home Screen Component
 -------------------------------------------------------------------------*/
 export default function HomeScreen(){
-
   const [currentUser, setCurrentUser] = useState({});
+  const APIURL = API_URL.API_URL;
     useEffect(() => {
         async function fetchCurrentUser() {
-            const response = await fetch(`http://127.0.0.1:5000/user`,{credentials: 'include'});
+            const response = await fetch(`${APIURL}/user`,{credentials: 'include'});
             const newCurrentUser = await response.json()
             setCurrentUser(newCurrentUser);
         }

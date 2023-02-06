@@ -5,6 +5,7 @@ import React, {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Styles/GlobalStyles.css';
 import '../Styles/RegistrationScreen.css';
+import API_URL from'../config.json';
 
 /*-------------------------------------------------------------------------
   Registration Component
@@ -25,7 +26,7 @@ export default function SignInScreen(){
   /*-------------------------------------------------------------------------
     Methods
   -------------------------------------------------------------------------*/
-  const apiURL = 'http://127.0.0.1:5000'
+  const apiURL = API_URL.API_URL;
   const handleRegister = async () => {
     //handle adding user information into the database
     const response = await fetch(`${apiURL}/register`, {

@@ -5,6 +5,7 @@ import React, {useState, useEffect} from 'react';
 
 import '../Styles/GlobalStyles.css';
 import '../Styles/LoadInvoicesScreen.css';
+import API_URL from'../config.json';
 
 
 //TODO: make date useState an actual date variable so it can work with the database
@@ -16,7 +17,7 @@ export default function LoadInvoicesScreen({ navigation }){
   //this function will submit the input data to the backend to be uploaded to the database
   //TODO: 1.) submit the data - DONE - MXO
   //      2.) error handling/input handling
-  const apiURL = 'http://127.0.0.1:5000'
+  const apiURL = API_URL.API_URL;
   const handleSubmit = async () => {
     const response = await fetch(`${apiURL}/invoices`, {
       method: 'POST',

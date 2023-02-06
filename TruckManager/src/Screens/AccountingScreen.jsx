@@ -73,7 +73,7 @@ function InvoiceData({invoice}) {
 -------------------------------------------------------------------------*/
 export default function AccountingScreen(props){
 
-  const apiURL = "http://127.0.0.1:5000";
+  const apiURL = API_URL.API_URL;
 
   /*-------------------------------------------------------------------------
     Create "invoices" state variable and function to update it
