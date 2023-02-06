@@ -10,8 +10,13 @@ import API_URL from'../config.json';
 /*-------------------------------------------------------------------------
   Registration Component
 -------------------------------------------------------------------------*/
-export default function SignInScreen(){
+export default function RegistrationScreen(){
+  /*-------------------------------------------------------------------------
+    Constants
+  -------------------------------------------------------------------------*/
   const navigate = useNavigate();
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,32}$/;
+  const emailRegex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
 
   /*-------------------------------------------------------------------------
     React States
@@ -45,7 +50,7 @@ export default function SignInScreen(){
     const created = await response.json();
     //TODO: error handling
     if(created.message === "FAILED") {
-      setSubmitError("FAILED TO CREATE ACCOUNT");
+      setSubmitError("Failed to create account, try again");
     }
     else {
       navigate("/..");
@@ -59,6 +64,14 @@ export default function SignInScreen(){
         setSubmitError("Every blank must be filled in!");
         return;
     }
+    if (!emailRegex.test(email)) {
+      setSubmitError("Invalid email!");
+      return;
+    }
+    if (!passwordRegex.test(password)) {
+      setSubmitError("Password must contain at least 8 characters, one uppercase letter, one lowercase letter, and a number");
+      return;
+  }
     else if(submitError.length > 0) {
       setSubmitError("");
     }
