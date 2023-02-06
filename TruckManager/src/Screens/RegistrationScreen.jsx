@@ -110,7 +110,7 @@ export default function SignInScreen(){
             <input 
                 className='input-field'
                 id='confirmPassword' 
-                type='confirmPassword'
+                type='password'
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)} 
                 autoComplete="off"
