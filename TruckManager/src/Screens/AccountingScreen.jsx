@@ -5,6 +5,7 @@ import React, {useState, useEffect} from 'react';
 import '../Styles/GlobalStyles.css';
 import '../Styles/AccountingScreen.css';
 import API_URL from'../config.json';
+import { useNavigate } from 'react-router-dom';
 
 /*-------------------------------------------------------------------------
   Accounting Data Component
@@ -79,6 +80,8 @@ export default function AccountingScreen(props){
     Create "invoices" state variable and function to update it
   -------------------------------------------------------------------------*/
   const [invoices, setInvoices] = useState([{}]);
+  const [authenticated, setAuthenticated] = useState(true);
+  const navigate = useNavigate();
 
   /*-------------------------------------------------------------------------
     useEffect() is a hook that takes a callback and a dependency array.
@@ -91,6 +94,13 @@ export default function AccountingScreen(props){
     async function fetchInvoices() {
       const response = await fetch(`${apiURL}/invoices`, {credentials: 'include'});
       const newInvoices = await response.json();
+      if (newInvoices.authenticated === false) {
+        setAuthenticated(false);
+        alert("not authorized");
+        navigate("/");
+        return;
+      }
+      setAuthenticated(true);
       setInvoices(newInvoices);
     }
     fetchInvoices();
@@ -107,11 +117,12 @@ export default function AccountingScreen(props){
     <div className="container">
       <h1>Invoices</h1>
         <div className="cards">
-        {invoices.map((invoice, idx) => {
+        {authenticated && invoices.map((invoice, idx) => {
           return(
             <TruckAccoutingData invoice={invoice} key={idx}/>
           );
         })}
+        {!authenticated && <h1 style={{textAlign: 'center', color: 'red'}}>not authorized</h1>}
       </div>
     </div>
   );
