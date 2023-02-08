@@ -5,6 +5,8 @@ import React, {useState, useEffect} from 'react';
 
 import '../Styles/GlobalStyles.css';
 import '../Styles/LoadInvoicesScreen.css';
+import API_URL from'../config.json';
+import { useNavigate } from 'react-router-dom';
 
 
 //TODO: make date useState an actual date variable so it can work with the database
@@ -16,7 +18,8 @@ export default function LoadInvoicesScreen({ navigation }){
   //this function will submit the input data to the backend to be uploaded to the database
   //TODO: 1.) submit the data - DONE - MXO
   //      2.) error handling/input handling
-  const apiURL = 'http://localhost:5000'
+  const apiURL = API_URL.API_URL;
+  const navigate = useNavigate();
   const handleSubmit = async () => {
     const response = await fetch(`${apiURL}/invoices`, {
       method: 'POST',
@@ -24,6 +27,7 @@ export default function LoadInvoicesScreen({ navigation }){
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
+      credentials: 'include',
       body: JSON.stringify({
         date: date,
         driver: driver,
@@ -38,8 +42,13 @@ export default function LoadInvoicesScreen({ navigation }){
     });
     const created = await response.json();
     //if json response does not container a true created object then this alerts the user the submission failed and to try again. -MXO
+    if(created.authenticated === false) {
+      alert("not authorized");
+      navigate("/");
+      return;
+    }
     if (!created.created) {
-      alert("Load ticket submission FAILED. Try again")
+      alert("Load ticket submission FAILED. Try again");
     }
     
     setDate("");

@@ -5,6 +5,7 @@ import React, {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Styles/GlobalStyles.css';
 import '../Styles/SignInScreen.css';
+import API_URL from'../config.json';
 
 /*-------------------------------------------------------------------------
   Sign In Component
@@ -22,7 +23,7 @@ export default function SignInScreen(){
   /*-------------------------------------------------------------------------
     Methods
   -------------------------------------------------------------------------*/
-  const apiURL = 'http://localhost:5000'
+  const apiURL = API_URL.API_URL;
   const handleLogin = async () => {
     const response = await fetch(`${apiURL}/login`, {
       method: 'POST',
@@ -30,13 +31,14 @@ export default function SignInScreen(){
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
+      credentials: 'include',
       body: JSON.stringify({
         username: username,
         password: password
       })
     });
     const validation = await response.json();
-    console.log(validation.response);
+    //console.log(validation.response);
     setValidation(validation.accepted);
     return validation.accepted;
   }

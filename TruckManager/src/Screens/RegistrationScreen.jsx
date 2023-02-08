@@ -5,12 +5,18 @@ import React, {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Styles/GlobalStyles.css';
 import '../Styles/RegistrationScreen.css';
+import API_URL from'../config.json';
 
 /*-------------------------------------------------------------------------
   Registration Component
 -------------------------------------------------------------------------*/
-export default function SignInScreen(){
+export default function RegistrationScreen(){
+  /*-------------------------------------------------------------------------
+    Constants
+  -------------------------------------------------------------------------*/
   const navigate = useNavigate();
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,32}$/;
+  const emailRegex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
 
   /*-------------------------------------------------------------------------
     React States
@@ -25,7 +31,7 @@ export default function SignInScreen(){
   /*-------------------------------------------------------------------------
     Methods
   -------------------------------------------------------------------------*/
-  const apiURL = 'http://localhost:5000'
+  const apiURL = API_URL.API_URL;
   const handleRegister = async () => {
     //handle adding user information into the database
     const response = await fetch(`${apiURL}/register`, {
@@ -42,10 +48,11 @@ export default function SignInScreen(){
       })
     });
     const created = await response.json();
-    if(!created.created){
-      alert("Account creation FAILED. Try again");
+    //TODO: error handling
+    if(created.message === "FAILED") {
+      setSubmitError("Failed to create account, try again");
     }
-    else{
+    else {
       navigate("/..");
     }
   }
@@ -57,12 +64,20 @@ export default function SignInScreen(){
         setSubmitError("Every blank must be filled in!");
         return;
     }
+    if (!emailRegex.test(email)) {
+      setSubmitError("Invalid email!");
+      return;
+    }
+    if (!passwordRegex.test(password)) {
+      setSubmitError("Password must contain at least 8 characters, one uppercase letter, one lowercase letter, and a number");
+      return;
+  }
     else if(submitError.length > 0) {
       setSubmitError("");
     }
     handleRegister();
   }
-    
+
   /*-------------------------------------------------------------------------
     Registration Screen
   -------------------------------------------------------------------------*/
@@ -72,45 +87,45 @@ export default function SignInScreen(){
         <form className="form-register" onSubmit={handleSubmit} autoComplete="off">
             {submitError.length > 0 && <div style={{color:'red', fontWeight:'bold', margin:'10px'}}>{submitError}</div>}
             <label className="input-label" htmlFor='employeeId'>Employee ID</label>
-            <input 
+            <input
                 className='input-field'
-                id='employeeId' 
+                id='employeeId'
                 value={employeeId}
                 onChange={(e) => setEmployeeId(e.target.value)}
                 autoComplete="off"
             />
             <label className="input-label" htmlFor='username'>Username</label>
-            <input 
+            <input
                 className='input-field'
-                id='username' 
+                id='username'
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 autoComplete="off"
             />
             <label className="input-label" htmlFor='email'>Email</label>
-            <input 
+            <input
                 className='input-field'
-                id='email' 
+                id='email'
                 value={email}
-                onChange={(e) => setEmail(e.target.value)} 
+                onChange={(e) => setEmail(e.target.value)}
                 autoComplete="off"
             />
             <label className="input-label" htmlFor='password'>Password</label>
-            <input 
+            <input
                 className='input-field'
-                id='password' 
+                id='password'
                 type='password'
                 value={password}
-                onChange={(e) => setPassword(e.target.value)} 
+                onChange={(e) => setPassword(e.target.value)}
                 autoComplete="off"
             />
             <label className="input-label" htmlFor='confirmPassword'>Confirm Password</label>
-            <input 
+            <input
                 className='input-field'
-                id='confirmPassword' 
-                type='confirmPassword'
+                id='confirmPassword'
+                type='password'
                 value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)} 
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 autoComplete="off"
             />
             <button className="register-btn" type="submit">Submit</button>
@@ -120,5 +135,5 @@ export default function SignInScreen(){
         </form>
       </div>
   )
-    
+
 }
