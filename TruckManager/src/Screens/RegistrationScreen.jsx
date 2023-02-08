@@ -29,21 +29,25 @@ export default function SignInScreen(){
   const handleRegister = async () => {
     //handle adding user information into the database
     const response = await fetch(`${apiURL}/register`, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          employeeId: employeeId,
-          username: username,
-          passcode: password,
-          email: email
-        })
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        employeeId: employeeId,
+        username: username,
+        passcode: password,
+        email: email
+      })
     });
     const created = await response.json();
-    //TODO: error handling
-    navigate("/..");
+    if(!created.created){
+      alert("Account creation FAILED. Try again");
+    }
+    else{
+      navigate("/..");
+    }
   }
 
   const handleSubmit = async (e) => {
