@@ -16,6 +16,7 @@ import {
   Route,
 } from "react-router-dom";
 import './App.css'
+import AddEmployee from './Screens/AddEmployee.jsx';
 
 /*-------------------------------------------------------------------
     Top level access to application
@@ -44,6 +45,9 @@ function App() {
     },
     {
       path: "/user", element: <UserProfileScreen />, errorElement: <ErrorBoundary />,
+    },
+    {
+      path: "/addemployee", element: <AddEmployee />, errorElement: <ErrorBoundary />,
     },
     ]);
 

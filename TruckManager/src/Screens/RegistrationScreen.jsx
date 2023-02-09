@@ -24,8 +24,6 @@ export default function RegistrationScreen(){
   const [employeeId, setEmployeeId] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [submitError, setSubmitError] = useState("");
@@ -37,7 +35,7 @@ export default function RegistrationScreen(){
   const handleRegister = async () => {
     //handle adding user information into the database
     const response = await fetch(`${apiURL}/register`, {
-      method: 'POST',
+      method: 'PUT',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -47,8 +45,6 @@ export default function RegistrationScreen(){
         username: username,
         passcode: password,
         email: email,
-        firstName: firstName,
-        lastName: lastName
       })
     });
     const created = await response.json();
@@ -70,8 +66,7 @@ export default function RegistrationScreen(){
   const handleSubmit = async (e) => {
     e.preventDefault();
     if(employeeId.length == 0 || username.length == 0 || email.length == 0 ||
-        firstName.length == 0 || lastName.length == 0 || password.length == 0 ||
-        confirmPassword.length == 0){
+         password.length == 0 || confirmPassword.length == 0){
         setSubmitError("Every blank must be filled in!");
         return;
     }
@@ -123,22 +118,6 @@ export default function RegistrationScreen(){
                 id='email'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                autoComplete="off"
-            />
-            <label className="input-label" htmlFor='firstName'>First Name</label>
-            <input
-                className='input-field'
-                id='firstName'
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                autoComplete="off"
-            />
-            <label className="input-label" htmlFor='lastName'>Last Name</label>
-            <input
-                className='input-field'
-                id='lastName'
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
                 autoComplete="off"
             />
             <label className="input-label" htmlFor='password'>Password</label>
