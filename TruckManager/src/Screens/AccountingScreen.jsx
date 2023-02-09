@@ -81,6 +81,7 @@ export default function AccountingScreen(props){
   -------------------------------------------------------------------------*/
   const [invoices, setInvoices] = useState([{}]);
   const [authenticated, setAuthenticated] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   /*-------------------------------------------------------------------------
@@ -101,6 +102,7 @@ export default function AccountingScreen(props){
         return;
       }
       setAuthenticated(true);
+      setIsLoading(false);
       setInvoices(newInvoices);
     }
     fetchInvoices();
@@ -116,14 +118,15 @@ export default function AccountingScreen(props){
   return (
     <div className="container">
       <h1>Invoices</h1>
-        <div className="cards">
+        {isLoading && <div>Loading...</div>}
+        {isLoading === false && <div className="cards">
         {authenticated && invoices.map((invoice, idx) => {
           return(
             <TruckAccoutingData invoice={invoice} key={idx}/>
           );
         })}
         {!authenticated && <h1 style={{textAlign: 'center', color: 'red'}}>not authorized</h1>}
-      </div>
+      </div>}
     </div>
   );
 
