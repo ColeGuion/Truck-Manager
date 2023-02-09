@@ -56,6 +56,12 @@ export default function RegistrationScreen(){
     if(created.message === "FAILED") {
       setSubmitError("Failed to create account, try again");
     }
+    else if(created.message === 'email') {
+      setSubmitError("Invalid email!");
+    }
+    else if(created.message === 'password'){
+      setSubmitError("Password must contain at least 8 characters, one uppercase letter, one lowercase letter, and a number");
+    }
     else {
       navigate("/..");
     }
