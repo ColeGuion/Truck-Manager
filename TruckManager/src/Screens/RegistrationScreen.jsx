@@ -76,7 +76,11 @@ export default function RegistrationScreen(){
     if (!passwordRegex.test(password)) {
       setSubmitError("Password must contain at least 8 characters, one uppercase letter, one lowercase letter, and a number");
       return;
-  }
+    }
+    if (password != confirmPassword){
+      setSubmitError("Password and Confirm Password are not the same, try again.");
+      return;
+    }
     else if(submitError.length > 0) {
       setSubmitError("");
     }
