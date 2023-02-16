@@ -15,7 +15,7 @@ export default function SignInScreen(){
   /*-------------------------------------------------------------------------
     React States
   -------------------------------------------------------------------------*/
-  const [username, setUsername] = useState("");
+  const [employeeId, setEmployeeId] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
   const [validation, setValidation] = useState(false);
@@ -33,7 +33,7 @@ export default function SignInScreen(){
       },
       credentials: 'include',
       body: JSON.stringify({
-        username: username,
+        employeeId: employeeId,
         password: password
       })
     });
@@ -57,7 +57,7 @@ export default function SignInScreen(){
           setLoginError("Invalid Credentials");
         }
       });
-      setUsername("");
+      setEmployeeId("");
       setPassword("");
     }
     loginHandler();
@@ -79,12 +79,12 @@ export default function SignInScreen(){
         <h1>Sign In</h1>
         <form className="form-login" onSubmit={validateSignIn}>
           {loginError.length > 0 && <div style={{color:'red', fontWeight:'bold', margin:'10px'}}>{loginError}</div>}
-              <label className="input-label" htmlFor='username'>Username</label>
+              <label className="input-label" htmlFor='employeeId'>Employee ID</label>
               <input 
                 className='input-field'
-                id='username' 
-                value={username}
-                onChange={(e) => setUsername(e.target.value)} 
+                id='employeeId' 
+                value={employeeId}
+                onChange={(e) => setEmployeeId(e.target.value)} 
               />
               <label className="input-label" htmlFor='password'>Password</label>
               <input 

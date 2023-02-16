@@ -25,7 +25,7 @@ function ResetPassword(props) {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          username: props.globalUsername,
+          employeeId: props.globalEmployeeId,
           newPassword: newPassword
         })
       });
@@ -64,30 +64,32 @@ function ResetPassword(props) {
   );
 }
 
-function ValidatingUsername(props) {
+function ValidatingEmployeeId(props) {
 
-  const [usernameError, setUsernameError] = useState("");
-  const [username, setUsername] = useState("");
+  const [employeeIdError, setEmployeeIdError] = useState("");
+  const [employeeId, setEmployeeId] = useState("");
 
-  const validUsername = async (e) => {
+  const validEmployeeId = async (e) => {
     e.preventDefault();
-    const response = await fetch(`${APIURL}/validusername/${username}`)
+    const response = await fetch(`${APIURL}/validemployeeid/${employeeId}`)
     const validated = await response.json();
+    console.log(employeeId);
+    console.log("Response: ", response.json);
     if(validated.response) {
-      props.setValidatedUsername(true);
-      props.setGlobalUsername(username);
+      props.setValidatedEmployeeId(true);
+      props.setGlobalEmployeeId(employeeId);
     }
     else {
-      setUsername("");
-      setUsernameError("Not Valid Username");
+      setEmployeeId("");
+      setEmployeeIdError("Not Valid Employee ID");
     }
   }
 
   return (
-    <form className="form-fgt-pass" onSubmit={validUsername}>
-      {usernameError.length > 0 && <div style={{color:'red', fontWeight:'bold', margin:'10px'}}>{usernameError}</div>}
-        <label className="input-label" htmlFor="username">Username*</label>
-        <input className="input-field" id="usename" onChange={(e) => setUsername(e.target.value)} value={username}/>
+    <form className="form-fgt-pass" onSubmit={validEmployeeId}>
+      {employeeIdError.length > 0 && <div style={{color:'red', fontWeight:'bold', margin:'10px'}}>{employeeIdError}</div>}
+        <label className="input-label" htmlFor="employeeId">Employee ID*</label>
+        <input className="input-field" id="usename" onChange={(e) => setEmployeeId(e.target.value)} value={employeeId}/>
       <button className="login-btn">Forgot Password</button>
     </form>
   );
@@ -119,7 +121,7 @@ function VerifyOTP(props) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        username: props.globalUsername
+        employeeId: props.globalEmployeeId
       })
     });
     const sentEmail = await response.json();
@@ -144,7 +146,7 @@ function VerifyOTP(props) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        username: props.globalUsername,
+        employeeId: props.globalEmployeeId,
         otp: oneTimePin,
       })
     });
@@ -183,8 +185,8 @@ function VerifyOTP(props) {
   Forgot Password Component
 -------------------------------------------------------------------------*/
 export default function ForgotPasswordScreen(){
-  const [validatedUsername, setValidatedUsername] = useState(false);
-  const [globalUsername, setGlobalUsername] = useState("");
+  const [validatedEmployeeId, setValidatedEmployeeId] = useState(false);
+  const [globalEmployeeId, setGlobalEmployeeId] = useState("");
   const [isValidated, setIsValidated] = useState(false);
   const [emailAddress, setEmailAddress] = useState("");
   const [sentOTPEmail, setSentOTPEmail] = useState(false);
@@ -195,9 +197,9 @@ export default function ForgotPasswordScreen(){
   return(
     <div className="container">
         <h1>Forgot Password</h1>
-        {validatedUsername === false && <ValidatingUsername setGlobalUsername={setGlobalUsername} setValidatedUsername={setValidatedUsername}/>}
-        {validatedUsername === true && isValidated === true && <ResetPassword globalUsername={globalUsername}/>}
-        {validatedUsername === true && isValidated === false && <VerifyOTP globalUsername={globalUsername} emailAddress={emailAddress} setIsValidated={setIsValidated} setEmailAddress={setEmailAddress} sentOTPEmail={sentOTPEmail} setSentOTPEmail={setSentOTPEmail}/>}
+        {validatedEmployeeId === false && <ValidatingEmployeeId setGlobalEmployeeId={setGlobalEmployeeId} setValidatedEmployeeId={setValidatedEmployeeId}/>}
+        {validatedEmployeeId === true && isValidated === true && <ResetPassword globalEmployeeId={globalEmployeeId}/>}
+        {validatedEmployeeId === true && isValidated === false && <VerifyOTP globalEmployeeId={globalEmployeeId} emailAddress={emailAddress} setIsValidated={setIsValidated} setEmailAddress={setEmailAddress} sentOTPEmail={sentOTPEmail} setSentOTPEmail={setSentOTPEmail}/>}
     </div>
   )
     
