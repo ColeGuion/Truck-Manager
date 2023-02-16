@@ -64,6 +64,11 @@ function ResetPassword(props) {
   );
 }
 
+/*
+Original Author: Mason Otto
+Last Modified: 2/15/2023 by Ryan Penrod
+Changes: Updated uses of username with employeeId
+*/
 function ValidatingEmployeeId(props) {
 
   const [employeeIdError, setEmployeeIdError] = useState("");
@@ -108,10 +113,12 @@ function VerifyOTP(props) {
 
   /*
   -Author: Mason Otto
-  -Last Modified: 1/23/2023
   -Description: This fetches to the backend API to generate a OTP and get the users email address
   -Return: N/A
   TODO: Test code and refactor
+  
+  -Last Modified: 2/15/2023 by Ryan Penrod
+  -Changes: Updated uses of username with employeeId
   */ 
   async function getOTPEmail(){
     const response = await fetch(`${APIURL}/requestotp`, {
