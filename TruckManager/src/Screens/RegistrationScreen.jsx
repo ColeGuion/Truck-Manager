@@ -22,7 +22,6 @@ export default function RegistrationScreen(){
     React States
   -------------------------------------------------------------------------*/
   const [employeeId, setEmployeeId] = useState("");
-  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -42,7 +41,6 @@ export default function RegistrationScreen(){
       },
       body: JSON.stringify({
         employeeId: employeeId,
-        username: username,
         passcode: password,
         email: email,
       })
@@ -65,7 +63,7 @@ export default function RegistrationScreen(){
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(employeeId.length == 0 || username.length == 0 || email.length == 0 ||
+    if(employeeId.length == 0 || email.length == 0 ||
          password.length == 0 || confirmPassword.length == 0){
         setSubmitError("Every blank must be filled in!");
         return;
@@ -119,14 +117,6 @@ export default function RegistrationScreen(){
                 id='employeeId'
                 value={employeeId}
                 onChange={(e) => setEmployeeId(e.target.value)}
-                autoComplete="off"
-            />
-            <label className="input-label" htmlFor='username'>Username</label>
-            <input
-                className='input-field'
-                id='username'
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
                 autoComplete="off"
             />
             <label className="input-label" htmlFor='email'>Email</label>
