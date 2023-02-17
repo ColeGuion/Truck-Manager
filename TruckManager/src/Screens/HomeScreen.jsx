@@ -14,22 +14,29 @@ import API_URL from'../config.json';
 export default function HomeScreen(){
   const [currentUser, setCurrentUser] = useState({});
   const [authenticated, setAuthenticated] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
   const APIURL = API_URL.API_URL;
-    useEffect(() => {
-        async function fetchCurrentUser() {
-            const response = await fetch(`${APIURL}/user`,{credentials: 'include'});
-            const newCurrentUser = await response.json()
-            if (newCurrentUser.authenticated === false) {
-              setAuthenticated(false);
-              alert("not authorized");
-              navigate("/");
-              return;
-            }
-            setCurrentUser(newCurrentUser);
-        }
-        fetchCurrentUser();
-    },[])
+  useEffect(() => {
+      async function fetchCurrentUser() {
+          const response = await fetch(`${APIURL}/user`,{credentials: 'include'});
+          const newCurrentUser = await response.json()
+          if (newCurrentUser.authenticated === false) {
+            setAuthenticated(false);
+            alert("not authorized");
+            navigate("/");
+            return;
+          }
+          setCurrentUser(newCurrentUser);
+          if(newCurrentUser.user.accountType === "Admin") {
+            setIsAdmin(true);
+          }
+          else {
+            setIsAdmin(false);
+          }
+      }
+      fetchCurrentUser();
+  },[])
   /*-------------------------------------------------------------------------
     Home Screen
   -------------------------------------------------------------------------*/
@@ -46,6 +53,9 @@ export default function HomeScreen(){
           <button className="home-btns" onClick = { () => navigate("/accounting") }>
             Invoices
           </button>
+          {isAdmin && <button className="home-btns" onClick = { () => navigate("/addemployee") }>
+            Add Employee
+          </button>}
         </>}
         {!authenticated && <h1 style={{textAlign: 'center', color: 'red'}}>not authorized</h1>}
       </div>
