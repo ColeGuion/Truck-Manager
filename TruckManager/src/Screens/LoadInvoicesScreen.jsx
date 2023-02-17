@@ -86,6 +86,25 @@ export default function LoadInvoicesScreen({ navigation }){
   const [hours, setHours] = useState(""); //database stores this as an int
   const [unitPrice, setUnitPrice] = useState(""); //database stores this as an int
   const [submitError, setSubmitError] = useState("");
+  const [currentUser, setCurrentUser] = useState({});
+
+  useEffect(() => {
+    async function fetchCurrentUser() {
+        const response = await fetch(`${apiURL}/user`,{credentials: 'include'});
+        const newCurrentUser = await response.json()
+        if (newCurrentUser.authenticated === false) {
+          setAuthenticated(false);
+          alert("not authorized");
+          navigate("/");
+          return;
+        }
+        setCurrentUser(newCurrentUser);
+        setDriver(newCurrentUser.user.employeeId); //this will autofill the driver field with the current user's employee id. -MXO
+        const currDate = new Date();
+        setDate(currDate.toISOString().slice(0, 16)); //this and the line above will autofill the date field to be the current date. -MXO
+      }
+    fetchCurrentUser();
+},[])
 
   /*-------------------------------------------------------------------------
     Load Invoices Screen
