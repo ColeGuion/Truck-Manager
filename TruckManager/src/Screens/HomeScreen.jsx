@@ -23,7 +23,7 @@ export default function HomeScreen(){
           const newCurrentUser = await response.json()
           if (newCurrentUser.authenticated === false) {
             setAuthenticated(false);
-            alert("not authorized");
+            alert("not authorized"); 
             navigate("/");
             return;
           }

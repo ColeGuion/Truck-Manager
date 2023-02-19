@@ -1,0 +1,18 @@
+.page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: left;
+    min-height: 300px;
+    width: 300px;
+}
+.info {
+    text-align: left;
+    min-width: 300px;
+}
