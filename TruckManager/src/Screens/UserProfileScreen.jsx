@@ -51,6 +51,17 @@ export default function UserProfileScreen({ navigation }){
     }));
   }
 
+  /*
+    Author: Mason Otto
+    Creation Date: 2/21/2023
+    LastModified: 2/21/2023
+    Description: This will make a put request to the backend api to update the current users information
+  */
+  function saveUserInfo() {
+    //TODO: make put request to update current users information
+    console.log("saveUserInfo"); 
+  }
+
   /*-------------------------------------------------------------------------
     User Profile Screen
   -------------------------------------------------------------------------*/
@@ -96,7 +107,7 @@ export default function UserProfileScreen({ navigation }){
         </div>
         }
         {updateInfo && <div>
-        <button>Save</button>
+        <button onClick={saveUserInfo}>Save</button>
         <button onClick={() => {setUpdateInfo(false)}}>Cancel</button>
         </div>}
         {!updateInfo && <button onClick={() => {setUpdateInfo(true)}}>Update</button>}
