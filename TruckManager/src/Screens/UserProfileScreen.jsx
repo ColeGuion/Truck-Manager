@@ -56,6 +56,7 @@ export default function UserProfileScreen({ navigation }){
   -------------------------------------------------------------------------*/
   return (
       <div className="page-container">
+        <h1>User Information</h1>
         {!updateInfo &&
         <div className="info-container">
           <span className="info">Name: {currentUser.name || "N/A"}</span>
@@ -94,10 +95,10 @@ export default function UserProfileScreen({ navigation }){
           </div>
         </div>
         }
-        {updateInfo && <>
+        {updateInfo && <div>
         <button>Save</button>
         <button onClick={() => {setUpdateInfo(false)}}>Cancel</button>
-        </>}
+        </div>}
         {!updateInfo && <button onClick={() => {setUpdateInfo(true)}}>Update</button>}
       </div>
   );
