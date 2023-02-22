@@ -56,7 +56,7 @@ export default function UserProfileScreen({ navigation }){
   -------------------------------------------------------------------------*/
   return (
       <div className="page-container">
-        {updateInfo &&
+        {!updateInfo &&
         <div className="info-container">
           <span className="info">Name: {currentUser.name || "N/A"}</span>
           <span className="info">Employee ID: {currentUser.employeeId || "N/A"}</span>
@@ -68,32 +68,37 @@ export default function UserProfileScreen({ navigation }){
           <span className="info">Phone Number: {currentUser.phone || "N/A"}</span>
           <span className="info">Hire Date: {currentUser.hireDate || "N/A"}</span>
         </div>}
-        {!updateInfo &&
-        <>
-        <div className="info-container">
-          <span className="info">Name:</span>
-          <span className="info">Employee ID:</span>
-          <span className="info">Email:</span>
-          <span className="info">Street:</span>
-          <span className="info">State:</span>
-          <span className="info">City:</span>
-          <span className="info">Zipcode:</span>
-          <span className="info">Phone Number:</span>
-          <span className="info">Hire Date:</span>
+        {updateInfo &&
+        <div className="update-container">
+          <div className="info-container">
+            <span className="info">Name:</span>
+            <span className="info">Employee ID:</span>
+            <span className="info">Email:</span>
+            <span className="info">Street:</span>
+            <span className="info">State:</span>
+            <span className="info">City:</span>
+            <span className="info">Zipcode:</span>
+            <span className="info">Phone Number:</span>
+            <span className="info">Hire Date:</span>
+          </div>
+          <div className="info-container">
+            <input className="info" id="name" onChange={handleChange} value={currentUser.name}/>
+            <input className="info" id="employeeId" onChange={handleChange} value={currentUser.employeeId}/>
+            <input className="info" id="email" onChange={handleChange} value={currentUser.email}/>
+            <input className="info" id="street" onChange={handleChange} value={currentUser.street}/>
+            <input className="info" id="state" onChange={handleChange} value={currentUser.state}/>
+            <input className="info" id="city" onChange={handleChange} value={currentUser.city}/>
+            <input className="info" id="zipcode" onChange={handleChange} value={currentUser.zipcode}/>
+            <input className="info" id="phone" onChange={handleChange} value={currentUser.phone}/>
+            <input className="info" id="hireDate" value={currentUser.hireDate}/>
+          </div>
         </div>
-        <div className="info-container">
-          <input className="info" id="name" onChange={handleChange} value={currentUser.name}/>
-          <input className="info" id="employeeId" onChange={handleChange} value={currentUser.employeeId}/>
-          <input className="info" id="email" onChange={handleChange} value={currentUser.email}/>
-          <input className="info" id="street" onChange={handleChange} value={currentUser.street}/>
-          <input className="info" id="state" onChange={handleChange} value={currentUser.state}/>
-          <input className="info" id="city" onChange={handleChange} value={currentUser.city}/>
-          <input className="info" id="zipcode" onChange={handleChange} value={currentUser.zipcode}/>
-          <input className="info" id="phone" onChange={handleChange} value={currentUser.phone}/>
-          <input className="info" id="hireDate" value={currentUser.hireDate}/>
-        </div>
-        </>
         }
+        {updateInfo && <>
+        <button>Save</button>
+        <button onClick={() => {setUpdateInfo(false)}}>Cancel</button>
+        </>}
+        {!updateInfo && <button onClick={() => {setUpdateInfo(true)}}>Update</button>}
       </div>
   );
 

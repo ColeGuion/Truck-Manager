@@ -1,5 +1,6 @@
 .page-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -11,6 +12,11 @@
     text-align: left;
     min-height: 300px;
     width: 300px;
+}
+.update-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 .info {
     text-align: left;
