@@ -57,9 +57,30 @@ export default function UserProfileScreen({ navigation }){
     LastModified: 2/21/2023
     Description: This will make a put request to the backend api to update the current users information
   */
-  function saveUserInfo() {
+  async function saveUserInfo() {
     //TODO: make put request to update current users information
-    console.log("saveUserInfo"); 
+    const response = await fetch(`${APIURL}/updateuser`, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include',
+      body: JSON.stringify({
+          state: currentUser.state,
+          city: currentUser.city,
+          street: currentUser.street,
+          zipcode: currentUser.zipcode,
+          phone: currentUser.phone,
+      })
+    });
+    const message = await response.json(); 
+    if(message.message === "FAILED") {
+      console.log("Failed!");
+    }
+    else if(message.message === "UPDATED") {
+      console.log("Updated!");
+    }
   }
 
   /*-------------------------------------------------------------------------
@@ -94,9 +115,9 @@ export default function UserProfileScreen({ navigation }){
             <span className="info">Hire Date:</span>
           </div>
           <div className="info-container">
-            <input className="info" id="name" onChange={handleChange} value={currentUser.name}/>
-            <input className="info" id="employeeId" onChange={handleChange} value={currentUser.employeeId}/>
-            <input className="info" id="email" onChange={handleChange} value={currentUser.email}/>
+            <input className="info" id="name" value={currentUser.name}/>
+            <input className="info" id="employeeId" value={currentUser.employeeId}/>
+            <input className="info" id="email" value={currentUser.email}/>
             <input className="info" id="street" onChange={handleChange} value={currentUser.street}/>
             <input className="info" id="state" onChange={handleChange} value={currentUser.state}/>
             <input className="info" id="city" onChange={handleChange} value={currentUser.city}/>

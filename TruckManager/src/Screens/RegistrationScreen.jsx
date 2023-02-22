@@ -39,6 +39,7 @@ export default function RegistrationScreen(){
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
+      credentials: 'include',
       body: JSON.stringify({
         employeeId: employeeId,
         passcode: password,
