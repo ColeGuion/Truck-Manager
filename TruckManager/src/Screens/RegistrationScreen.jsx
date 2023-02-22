@@ -86,23 +86,6 @@ export default function RegistrationScreen(){
     handleRegister();
   }
 
-  /*
-  -Author: Cole Guion
-  -Last Modified: 2/10/2023
-  -Description: Generates a 20 digit hex value & checks that value is not already stored in the database
-  TODO: Test code
-  */ 
- function UniqueHex(uName) {
-  // Generate two random hex values
-  let part1 = (Math.random() * 0xfffff * 1000000000).toString(16); 
-  let part2 = (Math.random() * 0xfffff * 1000000000).toString(16);
-
-  // Combine first 10 digits of each to get your final unique ID
-  let final_ID = part1.slice(0, 10) + part2.slice(0, 10);
-
-  //TODO: Check against others in database
- }
-
   /*-------------------------------------------------------------------------
     Registration Screen
   -------------------------------------------------------------------------*/
