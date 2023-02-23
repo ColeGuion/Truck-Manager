@@ -15,6 +15,7 @@ export default function UserProfileScreen({ navigation }){
   const [currentUser, setCurrentUser] = useState({});
   const [authenticated, setAuthenticated] = useState(true);
   const [updateInfo, setUpdateInfo] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   /*
     Author: Mason Otto
@@ -33,6 +34,7 @@ export default function UserProfileScreen({ navigation }){
           return;
         }
         setCurrentUser(newCurrentUser);
+        setLoading(false);
     }
     fetchCurrentUser();
 },[])
@@ -89,7 +91,8 @@ export default function UserProfileScreen({ navigation }){
   return (
       <div className="page-container">
         <h1>User Information</h1>
-        {!updateInfo &&
+        {loading && <div>Loading...</div>}
+        {!updateInfo && !loading &&
         <div className="info-container">
           <span className="info">Name: {currentUser.name || "N/A"}</span>
           <span className="info">Employee ID: {currentUser.employeeId || "N/A"}</span>
@@ -101,7 +104,7 @@ export default function UserProfileScreen({ navigation }){
           <span className="info">Phone Number: {currentUser.phone || "N/A"}</span>
           <span className="info">Hire Date: {currentUser.hireDate || "N/A"}</span>
         </div>}
-        {updateInfo &&
+        {updateInfo && !loading &&
         <div className="update-container">
           <div className="info-container">
             <span className="info">Name:</span>
@@ -127,11 +130,11 @@ export default function UserProfileScreen({ navigation }){
           </div>
         </div>
         }
-        {updateInfo && <div>
+        {updateInfo && !loading && <div>
         <button onClick={saveUserInfo}>Save</button>
         <button onClick={() => {setUpdateInfo(false)}}>Cancel</button>
         </div>}
-        {!updateInfo && <button onClick={() => {setUpdateInfo(true)}}>Update</button>}
+        {!updateInfo && !loading && <button onClick={() => {setUpdateInfo(true)}}>Update</button>}
       </div>
   );
 
