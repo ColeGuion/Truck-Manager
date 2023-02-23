@@ -111,15 +111,15 @@ export default function UserProfileScreen({ navigation }){
         {updateInfo && !loading &&
         <div className="update-container">
           <div className="info-container">
-            <span className="info">Name:</span>
-            <span className="info">Employee ID:</span>
-            <span className="info">Email:</span>
-            <span className="info">Street:</span>
-            <span className="info">State:</span>
-            <span className="info">City:</span>
-            <span className="info">Zipcode:</span>
-            <span className="info">Phone Number:</span>
-            <span className="info">Hire Date:</span>
+            <label className="info" htmlFor="name">Name:</label>
+            <label className="info" htmlFor="employeeId">Employee ID:</label>
+            <label className="info" htmlFor="email">Email:</label>
+            <label className="info" htmlFor="street">Street:</label>
+            <label className="info" htmlFor="state">State:</label>
+            <label className="info" htmlFor="city">City:</label>
+            <label className="info" htmlFor="zipcode">Zipcode:</label>
+            <label className="info" htmlFor="phone">Phone Number:</label>
+            <label className="info" htmlFor="hireDate">Hire Date:</label>
           </div>
           <div className="info-container">
             <input className="info" id="name" readOnly value={currentUser.name}/>
