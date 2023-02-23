@@ -115,15 +115,15 @@ export default function UserProfileScreen({ navigation }){
             <span className="info">Hire Date:</span>
           </div>
           <div className="info-container">
-            <input className="info" id="name" value={currentUser.name}/>
-            <input className="info" id="employeeId" value={currentUser.employeeId}/>
-            <input className="info" id="email" value={currentUser.email}/>
+            <input className="info" id="name" readOnly value={currentUser.name}/>
+            <input className="info" id="employeeId" readOnly value={currentUser.employeeId}/>
+            <input className="info" id="email" readOnly value={currentUser.email}/>
             <input className="info" id="street" onChange={handleChange} value={currentUser.street}/>
             <input className="info" id="state" onChange={handleChange} value={currentUser.state}/>
             <input className="info" id="city" onChange={handleChange} value={currentUser.city}/>
             <input className="info" id="zipcode" onChange={handleChange} value={currentUser.zipcode}/>
             <input className="info" id="phone" onChange={handleChange} value={currentUser.phone}/>
-            <input className="info" id="hireDate" value={currentUser.hireDate}/>
+            <input className="info" id="hireDate" readOnly value={currentUser.hireDate}/>
           </div>
         </div>
         }
