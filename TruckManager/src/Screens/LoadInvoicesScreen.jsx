@@ -50,16 +50,14 @@ export default function LoadInvoicesScreen({ navigation }){
     if (!created.created) {
       alert("Load ticket submission FAILED. Try again");
     }
-    
-    setDate("");
-    setDriver("");
-    setTruckNum("");
+
     setDescription("");
     setOrderNum("");
     setTicketNum("");
     setTons("");
     setHours("");
     setUnitPrice("");
+    document.getElementById("description").focus(); //This will focus the description input for fast and easy ticket creation -MXO
   }
 
   const handleSubmitChecker = async (e) => {
