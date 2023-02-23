@@ -16,6 +16,7 @@ export default function UserProfileScreen({ navigation }){
   const [authenticated, setAuthenticated] = useState(true);
   const [updateInfo, setUpdateInfo] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
 
   /*
     Author: Mason Otto
@@ -35,6 +36,7 @@ export default function UserProfileScreen({ navigation }){
         }
         setCurrentUser(newCurrentUser);
         setLoading(false);
+        setErrorMessage("");
     }
     fetchCurrentUser();
 },[])
@@ -78,10 +80,11 @@ export default function UserProfileScreen({ navigation }){
     });
     const message = await response.json(); 
     if(message.message === "FAILED") {
-      console.log("Failed!");
+      setErrorMessage("Failed to update, try again");
     }
     else if(message.message === "UPDATED") {
-      console.log("Updated!");
+      setErrorMessage("");
+      setUpdateInfo(false);
     }
   }
 
@@ -92,6 +95,7 @@ export default function UserProfileScreen({ navigation }){
       <div className="page-container">
         <h1>User Information</h1>
         {loading && <div>Loading...</div>}
+        {errorMessage.length > 0 && <div id="error" style={{color:'red', fontWeight:'bold', margin:'10px'}}>{errorMessage}</div>}
         {!updateInfo && !loading &&
         <div className="info-container">
           <span className="info">Name: {currentUser.name || "N/A"}</span>
@@ -132,7 +136,7 @@ export default function UserProfileScreen({ navigation }){
         }
         {updateInfo && !loading && <div>
         <button onClick={saveUserInfo}>Save</button>
-        <button onClick={() => {setUpdateInfo(false)}}>Cancel</button>
+        <button onClick={() => {setUpdateInfo(false); setErrorMessage("");}}>Cancel</button>
         </div>}
         {!updateInfo && !loading && <button onClick={() => {setUpdateInfo(true)}}>Update</button>}
       </div>
