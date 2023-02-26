@@ -72,7 +72,9 @@ export default function UserProfileScreen({ navigation }){
   /*
     Author: Mason Otto
     Creation Date: 2/21/2023
-    LastModified: 2/21/2023
+    Last Modified: 2/26/2023
+    Modified By: Mason Otto
+    Recent Modifications: Added checks to make sure all fields are filled and that zipcode and phone number are of proper length
     Description: This will make a put request to the backend api to update the current users information
   */
   async function saveUserInfo() {
@@ -123,15 +125,15 @@ export default function UserProfileScreen({ navigation }){
         {errorMessage.length > 0 && <div id="error" style={{color:'red', fontWeight:'bold', margin:'10px'}}>{errorMessage}</div>}
         {!updateInfo && !loading &&
         <div className="info-container">
-          <span className="info">Name: {currentUser.name || "N/A"}</span>
-          <span className="info">Employee ID: {currentUser.employeeId || "N/A"}</span>
-          <span className="info">Email: {currentUser.email || "N/A"}</span>
-          <span className="info">Street: {currentUser.street || "N/A"}</span>
-          <span className="info">State: {currentUser.state || "N/A"}</span>
-          <span className="info">City: {currentUser.city || "N/A"}</span>
-          <span className="info">Zipcode: {currentUser.zipcode || "N/A"}</span>
-          <span className="info">Phone Number: {currentUser.phone || "N/A"}</span>
-          <span className="info">Hire Date: {currentUser.hireDate || "N/A"}</span>
+          <span className="info">Name:  {currentUser.name || "N/A"}</span>
+          <span className="info">Employee ID:  {currentUser.employeeId || "N/A"}</span>
+          <span className="info">Email:  {currentUser.email || "N/A"}</span>
+          <span className="info">Street:  {currentUser.street || "N/A"}</span>
+          <span className="info">State:  {currentUser.state || "N/A"}</span>
+          <span className="info">City:  {currentUser.city || "N/A"}</span>
+          <span className="info">Zipcode:  {currentUser.zipcode || "N/A"}</span>
+          <span className="info">Phone Number:  {currentUser.phone || "N/A"}</span>
+          <span className="info">Hire Date:  {currentUser.hireDate || "N/A"}</span>
         </div>}
         {updateInfo && !loading &&
         <div className="update-container">
@@ -150,7 +152,7 @@ export default function UserProfileScreen({ navigation }){
             <input className="info-read-only" id="name" readOnly value={currentUser.name}/>
             <input className="info-read-only" id="employeeId" readOnly value={currentUser.employeeId}/>
             <input className="info-read-only" id="email" readOnly value={currentUser.email}/>
-            <input className="info" id="street" onChange={handleChange} value={currentUser.street}/>
+            <input className="info-update" id="street" onChange={handleChange} value={currentUser.street}/>
             <select className="info-select" id="state" maxLength={2} onChange={handleChange} value={currentUser.state}>
               <option value="AL">AL</option>
               <option value="AK">AK</option>
@@ -204,9 +206,9 @@ export default function UserProfileScreen({ navigation }){
               <option value="WV">WV</option>
               <option value="WY">WY</option>
             </select>
-            <input className="info" id="city" onChange={handleChange} value={currentUser.city}/>
-            <input className="info" id="zipcode" maxLength={5} onChange={handleChange} value={currentUser.zipcode}/>
-            <input className="info" id="phone" type="tel" maxLength={10} onChange={handleChange} value={currentUser.phone}/>
+            <input className="info-update" id="city" onChange={handleChange} value={currentUser.city}/>
+            <input className="info-update" id="zipcode" maxLength={5} onChange={handleChange} value={currentUser.zipcode}/>
+            <input className="info-update" id="phone" type="tel" maxLength={10} onChange={handleChange} value={currentUser.phone}/>
             <input className="info-read-only" id="hireDate" readOnly value={currentUser.hireDate}/>
           </div>
         </div>

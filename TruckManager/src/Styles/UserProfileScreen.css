@@ -40,11 +40,22 @@
     text-align: left;
     min-width: 300px;
 }
+.info-update {
+    text-align: left;
+    min-width: 300px;
+}
 .info-read-only{
     text-align: left;
     min-width: 300px;
     background: none;
     border: none;
+}
+.info-read-only:focus{
+    text-align: left;
+    min-width: 300px;
+    background: none;
+    border: none;
+    outline: none;
 }
 .info-select {
     text-align: left;
