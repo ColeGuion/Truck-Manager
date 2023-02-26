@@ -34,7 +34,13 @@ export default function UserProfileScreen({ navigation }){
           navigate("/");
           return;
         }
-        setCurrentUser(newCurrentUser);
+        //this formats the date to show in the format mm/dd/yyyy
+        let copyOfCurrentUser = {...newCurrentUser};
+        const splitDate = copyOfCurrentUser.hireDate.split(" ")[0].split("-");
+        const formattedDate = splitDate[1] + "/" + splitDate[2] + "/" + splitDate[0]; 
+        copyOfCurrentUser.hireDate = formattedDate;
+
+        setCurrentUser(copyOfCurrentUser);
         setLoading(false);
         setErrorMessage("");
     }
@@ -44,10 +50,18 @@ export default function UserProfileScreen({ navigation }){
   /*
     Author: Mason Otto
     Creation Date: 2/20/2023
-    Last Modified: 2/20/2023
+    Last Modified: 2/26/2023
+    Modified By: Mason Otto
+    Modification: Added regex to check to make sure only numbers are input on zipcode and phone
     Description: This will update the values in currentUser as values are changed
   */
   function handleChange(e) {
+    if(e.target.id === "phone" || e.target.id === "zipcode") {
+      const numbersOnlyRegex = /^[0-9]*$/;
+      if(!numbersOnlyRegex.test(e.target.value)) {
+        return;
+      }
+    }
     let copyOfUser = {...currentUser};
     copyOfUser[e.target.id] = e.target.value;
     setCurrentUser(currentUser => ({
@@ -62,7 +76,18 @@ export default function UserProfileScreen({ navigation }){
     Description: This will make a put request to the backend api to update the current users information
   */
   async function saveUserInfo() {
-    //TODO: make put request to update current users information
+    if(currentUser.state.length === 0 || currentUser.city.length === 0 || currentUser.street.length === 0 || currentUser.zipcode.length === 0 || currentUser.phone.length === 0) {
+      setErrorMessage("All fields must be filled!");
+      return;
+    }
+    if(currentUser.phone.length < 10) {
+      setErrorMessage("Phone number must be 10 digits");
+      return;
+    }
+    if(currentUser.zipcode.length < 5) {
+      setErrorMessage("Zipcode must be 5 digits");
+      return;
+    }
     const response = await fetch(`${APIURL}/updateuser`, {
       method: 'PUT',
       headers: {
@@ -110,7 +135,7 @@ export default function UserProfileScreen({ navigation }){
         </div>}
         {updateInfo && !loading &&
         <div className="update-container">
-          <div className="info-container">
+          <div className="info-container-left">
             <label className="info" htmlFor="name">Name:</label>
             <label className="info" htmlFor="employeeId">Employee ID:</label>
             <label className="info" htmlFor="email">Email:</label>
@@ -121,16 +146,68 @@ export default function UserProfileScreen({ navigation }){
             <label className="info" htmlFor="phone">Phone Number:</label>
             <label className="info" htmlFor="hireDate">Hire Date:</label>
           </div>
-          <div className="info-container">
-            <input className="info" id="name" readOnly value={currentUser.name}/>
-            <input className="info" id="employeeId" readOnly value={currentUser.employeeId}/>
-            <input className="info" id="email" readOnly value={currentUser.email}/>
+          <div className="info-container-right">
+            <input className="info-read-only" id="name" readOnly value={currentUser.name}/>
+            <input className="info-read-only" id="employeeId" readOnly value={currentUser.employeeId}/>
+            <input className="info-read-only" id="email" readOnly value={currentUser.email}/>
             <input className="info" id="street" onChange={handleChange} value={currentUser.street}/>
-            <input className="info" id="state" onChange={handleChange} value={currentUser.state}/>
+            <select className="info-select" id="state" maxLength={2} onChange={handleChange} value={currentUser.state}>
+              <option value="AL">AL</option>
+              <option value="AK">AK</option>
+              <option value="AR">AR</option>
+              <option value="AZ">AZ</option>
+              <option value="CA">CA</option>
+              <option value="CO">CO</option>
+              <option value="CT">CT</option>
+              <option value="DC">DC</option>
+              <option value="DE">DE</option>
+              <option value="FL">FL</option>
+              <option value="GA">GA</option>
+              <option value="HI">HI</option>
+              <option value="IA">IA</option>
+              <option value="ID">ID</option>
+              <option value="IL">IL</option>
+              <option value="IN">IN</option>
+              <option value="KS">KS</option>
+              <option value="KY">KY</option>
+              <option value="LA">LA</option>
+              <option value="MA">MA</option>
+              <option value="MD">MD</option>
+              <option value="ME">ME</option>
+              <option value="MI">MI</option>
+              <option value="MN">MN</option>
+              <option value="MO">MO</option>
+              <option value="MS">MS</option>
+              <option value="MT">MT</option>
+              <option value="NC">NC</option>
+              <option value="NE">NE</option>
+              <option value="NH">NH</option>
+              <option value="NJ">NJ</option>
+              <option value="NM">NM</option>
+              <option value="NV">NV</option>
+              <option value="NY">NY</option>
+              <option value="ND">ND</option>
+              <option value="OH">OH</option>
+              <option value="OK">OK</option>
+              <option value="OR">OR</option>
+              <option value="PA">PA</option>
+              <option value="RI">RI</option>
+              <option value="SC">SC</option>
+              <option value="SD">SD</option>
+              <option value="TN">TN</option>
+              <option value="TX">TX</option>
+              <option value="UT">UT</option>
+              <option value="VT">VT</option>
+              <option value="VA">VA</option>
+              <option value="WA">WA</option>
+              <option value="WI">WI</option>
+              <option value="WV">WV</option>
+              <option value="WY">WY</option>
+            </select>
             <input className="info" id="city" onChange={handleChange} value={currentUser.city}/>
-            <input className="info" id="zipcode" onChange={handleChange} value={currentUser.zipcode}/>
-            <input className="info" id="phone" onChange={handleChange} value={currentUser.phone}/>
-            <input className="info" id="hireDate" readOnly value={currentUser.hireDate}/>
+            <input className="info" id="zipcode" maxLength={5} onChange={handleChange} value={currentUser.zipcode}/>
+            <input className="info" id="phone" type="tel" maxLength={10} onChange={handleChange} value={currentUser.phone}/>
+            <input className="info-read-only" id="hireDate" readOnly value={currentUser.hireDate}/>
           </div>
         </div>
         }
