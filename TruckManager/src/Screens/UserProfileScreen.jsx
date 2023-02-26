@@ -17,6 +17,7 @@ export default function UserProfileScreen({ navigation }){
   const [updateInfo, setUpdateInfo] = useState(false);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   /*
     Author: Mason Otto
@@ -75,6 +76,7 @@ export default function UserProfileScreen({ navigation }){
     Last Modified: 2/26/2023
     Modified By: Mason Otto
     Recent Modifications: Added checks to make sure all fields are filled and that zipcode and phone number are of proper length
+      Added an alert to alert successful updates
     Description: This will make a put request to the backend api to update the current users information
   */
   async function saveUserInfo() {
@@ -111,6 +113,7 @@ export default function UserProfileScreen({ navigation }){
     }
     else if(message.message === "UPDATED") {
       setErrorMessage("");
+      alert("Update Successful");
       setUpdateInfo(false);
     }
   }
@@ -123,6 +126,7 @@ export default function UserProfileScreen({ navigation }){
         <h1>User Information</h1>
         {loading && <div>Loading...</div>}
         {errorMessage.length > 0 && <div id="error" style={{color:'red', fontWeight:'bold', margin:'10px'}}>{errorMessage}</div>}
+        {successMessage.length > 0 && <div id="error" style={{color:'green', fontWeight:'bold', margin:'10px'}}>{successMessage}</div>}
         {!updateInfo && !loading &&
         <div className="info-container">
           <span className="info">Name:  {currentUser.name || "N/A"}</span>
