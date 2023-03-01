@@ -18,14 +18,15 @@ function LoadTicket(props) {
   return (
     <div className="card-outer">
       <div className="card">
-          <div className="truckNum">
-            Truck #: {props.invoice.truck_number}
-          </div>
-          <div className="driver">
-            Driver: {props.invoice.driver_id}
-          </div>
+        <div className="delete-x">X</div>
+        <div className="truckNum">
+          Truck #: {props.invoice.truck_number}
         </div>
-        <div className="card-inner">
+        <div className="driver">
+          Driver: {props.invoice.driver_id}
+        </div>
+      </div>
+      <div className="card-inner">
         <div>
           Date: {formattedDate}
         </div>
