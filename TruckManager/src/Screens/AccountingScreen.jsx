@@ -52,6 +52,71 @@ function LoadTicket(props) {
   );
 }
 
+function FilterOptions(props) {
+
+  const handleFilterOptionChange = (e) => {
+    props.setFilterOption(e.target.value);
+  }
+
+  return (
+    <div className="filter-options">
+      Search by:
+      <form>
+        <label className="filter-radio-button">
+          Driver ID
+          <input
+            type="radio"
+            name="filterOption"
+            value="driver_id"
+            checked={props.filterOption === "driver_id"}
+            onChange={handleFilterOptionChange}
+          />
+        </label>
+        <label className="filter-radio-button">
+          Truck #
+          <input
+            type="radio"
+            name="filterOption"
+            value="truck_number"
+            checked={props.filterOption === "truck_number"}
+            onChange={handleFilterOptionChange}
+          />
+        </label>
+        <label className="filter-radio-button">
+          Date
+          <input
+            type="radio"
+            name="filterOption"
+            value="date"
+            checked={props.filterOption === "date"}
+            onChange={handleFilterOptionChange}
+          />
+        </label>
+        <label className="filter-radio-button">
+          Ticket #
+          <input
+            type="radio"
+            name="filterOption"
+            value="ticket_number"
+            checked={props.filterOption === "ticket_number"}
+            onChange={handleFilterOptionChange}
+          />
+        </label>
+        <label className="filter-radio-button">
+          Order #
+          <input
+            type="radio"
+            name="filterOption"
+            value="order"
+            checked={props.filterOption === "order"}
+            onChange={handleFilterOptionChange}
+          />
+        </label>
+      </form>
+    </div>
+  );
+}
+
 /*-------------------------------------------------------------------------
   Accounting Screen Component
 -------------------------------------------------------------------------*/
@@ -94,10 +159,6 @@ export default function AccountingScreen(props){
     fetchInvoices();
   }, []);
 
-  const handleFilterOptionChange = (e) => {
-    setFilterOption(e.target.value);
-  }
-
   /*-------------------------------------------------------------------------
     Accounting Screen
 
@@ -113,61 +174,7 @@ export default function AccountingScreen(props){
       <h1>Invoices</h1>
         {isLoading && <div>Loading...</div>}
         {isLoading === false && <div className="cards">
-        <div className="filter-options">
-          Filter by:
-          <form>
-            <label className="filter-radio-button">
-              Driver ID
-              <input
-                type="radio"
-                name="filterOption"
-                value="driver_id"
-                checked={filterOption === "driver_id"}
-                onChange={handleFilterOptionChange}
-              />
-            </label>
-            <label className="filter-radio-button">
-              Truck #
-              <input
-                type="radio"
-                name="filterOption"
-                value="truck_number"
-                checked={filterOption === "truck_number"}
-                onChange={handleFilterOptionChange}
-              />
-            </label>
-            <label className="filter-radio-button">
-              Date
-              <input
-                type="radio"
-                name="filterOption"
-                value="date"
-                checked={filterOption === "date"}
-                onChange={handleFilterOptionChange}
-              />
-            </label>
-            <label className="filter-radio-button">
-              Ticket #
-              <input
-                type="radio"
-                name="filterOption"
-                value="ticket_number"
-                checked={filterOption === "ticket_number"}
-                onChange={handleFilterOptionChange}
-              />
-            </label>
-            <label className="filter-radio-button">
-              Order #
-              <input
-                type="radio"
-                name="filterOption"
-                value="order"
-                checked={filterOption === "order"}
-                onChange={handleFilterOptionChange}
-              />
-            </label>
-          </form>
-        </div>
+        <FilterOptions filterOption={filterOption} setFilterOption={setFilterOption}/>
         <input
           type="text"
           placeholder="Search..."
