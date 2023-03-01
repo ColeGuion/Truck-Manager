@@ -41,3 +41,14 @@
     padding: 10px;
     font-size: 20px;
 }
+
+.filter-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.filter-radio-button {
+    margin-left: 10px;
+    margin-right: 10px;
+}
