@@ -184,12 +184,21 @@ export default function AccountingScreen(props){
         {isLoading && <div>Loading...</div>}
         {isLoading === false && <div className="cards">
         <FilterOptions filterOption={filterOption} setFilterOption={setFilterOption}/>
-        <input
+        {filterOption != "date" &&
+          <input
           type="text"
           placeholder="Search..."
           className="filter-search"
           onChange={(e) => setFilterSearch(e.target.value)}
-        />
+          value={filterSearch}
+        />}
+        {filterOption == "date" &&
+          <input
+          type="datetime-local"
+          className="filter-date-search"
+          onChange={(e) => setFilterSearch(e.target.value)}
+          value={filterSearch}
+        />}
         {authenticated && invoices.filter((invoice) => invoice[filterOption].toString().includes(filterSearch)).map((invoice, idx) => {
           return(
             <LoadTicket invoice={invoice} key={idx}/>

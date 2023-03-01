@@ -42,6 +42,15 @@
     font-size: 20px;
 }
 
+.filter-date-search {
+    border: 1px solid white;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 20px;
+}
+
 .filter-options {
     display: flex;
     flex-direction: row;
