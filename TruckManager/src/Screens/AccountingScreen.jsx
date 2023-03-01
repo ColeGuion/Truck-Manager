@@ -208,11 +208,16 @@ export default function AccountingScreen(props){
           onChange={(e) => setFilterSearch(e.target.value)}
           value={filterSearch}
         />}
-        {authenticated && invoices.filter((invoice) => invoice[filterOption].toString().includes(filterSearch)).map((invoice, idx) => {
-          return(
-            <LoadTicket invoice={invoice} key={idx}/>
-          );
-        })}
+        {authenticated && invoices.filter((invoice) =>
+          invoice[filterOption]
+          .toString()
+          .includes(filterSearch))
+          .sort( (a,b) => {return parseInt(a[filterOption], 10) > parseInt(b[filterOption], 10) ? 1 : -1} )
+          .map((invoice, idx) => {
+            return(
+              <LoadTicket invoice={invoice} key={idx}/>
+            );
+          })}
         {!authenticated && <h1 style={{textAlign: 'center', color: 'red'}}>not authorized</h1>}
       </div>}
     </div>
