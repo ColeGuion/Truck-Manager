@@ -15,10 +15,38 @@ function LoadTicket(props) {
   let formattedDate = new Date(props.invoice.date);
   formattedDate = formattedDate.toLocaleDateString() + ' ' + formattedDate.toLocaleTimeString();
   const total = (props.invoice.rate * props.invoice.tons).toFixed(2);
+  
+  /*
+    Author: Mason Otto
+    Created: 3/1/2023
+    Description: makes request to backend to delete this load ticket
+  */
+  async function deleteTicket() {
+    const response = await fetch(`${API_URL.API_URL}/deleteinvoice`, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include',
+      body: JSON.stringify({
+        ticketId: props.invoice.ticket_id,
+      })
+    });
+
+    const message = await response.json();
+    //if ticket has an error then alert there was an error.
+    if (message.message != "DELETED") {
+      alert("ERROR WITH DELETING TICKET");
+      return;
+    }
+    props.setDeletedTicket(props.invoice.ticket_id);
+  }
+
   return (
     <div className="card-outer">
       <div className="card">
-        <div className="delete-x">X</div>
+        <div className="delete-x" onClick={deleteTicket}>X</div>
         <div className="truckNum">
           Truck #: {props.invoice.truck_number}
         </div>
@@ -149,6 +177,7 @@ export default function AccountingScreen(props){
   const [isLoading, setIsLoading] = useState(true);
   const [filterOption, setFilterOption] = useState("driver_id");
   const [filterSearch, setFilterSearch] = useState("");
+  const [deletedTicket, setDeletedTicket] = useState(0);
   const navigate = useNavigate();
 
   /*-------------------------------------------------------------------------
@@ -175,6 +204,18 @@ export default function AccountingScreen(props){
     }
     fetchInvoices();
   }, []);
+
+  useEffect(() => {
+    if(deletedTicket != 0 && invoices.length > 0) {
+      let copyOfInvoices = invoices;
+      copyOfInvoices = invoices.filter((invoice) => {
+        if(invoice.ticket_id != deletedTicket) {
+          return invoice;
+        }
+      })
+      setInvoices(copyOfInvoices);
+    }
+  }, [deletedTicket]);
 
   /*-------------------------------------------------------------------------
     Accounting Screen
@@ -216,7 +257,7 @@ export default function AccountingScreen(props){
           .sort( (a,b) => {return parseInt(a[filterOption], 10) > parseInt(b[filterOption], 10) ? 1 : -1} )
           .map((invoice) => {
             return(
-              <LoadTicket invoice={invoice} key={invoice.ticket_id}/>
+              <LoadTicket invoice={invoice} key={invoice.ticket_id} setDeletedTicket={setDeletedTicket}/>
             );
           })}
         {!authenticated && <h1 style={{textAlign: 'center', color: 'red'}}>not authorized</h1>}
