@@ -214,9 +214,9 @@ export default function AccountingScreen(props){
           .toString()
           .includes(filterSearch))
           .sort( (a,b) => {return parseInt(a[filterOption], 10) > parseInt(b[filterOption], 10) ? 1 : -1} )
-          .map((invoice, idx) => {
+          .map((invoice) => {
             return(
-              <LoadTicket invoice={invoice} key={idx}/>
+              <LoadTicket invoice={invoice} key={invoice.ticket_id}/>
             );
           })}
         {!authenticated && <h1 style={{textAlign: 'center', color: 'red'}}>not authorized</h1>}
