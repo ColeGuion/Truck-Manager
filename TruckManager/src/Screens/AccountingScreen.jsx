@@ -60,11 +60,12 @@ export default function AccountingScreen(props){
   const apiURL = API_URL.API_URL;
 
   /*-------------------------------------------------------------------------
-    Create "invoices" state variable and function to update it
+    State Variables
   -------------------------------------------------------------------------*/
   const [invoices, setInvoices] = useState([{}]);
   const [authenticated, setAuthenticated] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
+  const [driverIdSearch, setDriverIdSearch] = useState("");
   const navigate = useNavigate();
 
   /*-------------------------------------------------------------------------
@@ -78,6 +79,7 @@ export default function AccountingScreen(props){
     async function fetchInvoices() {
       const response = await fetch(`${apiURL}/invoices`, {credentials: 'include'});
       const newInvoices = await response.json();
+      console.log(newInvoices);
       if (newInvoices.authenticated === false) {
         setAuthenticated(false);
         alert("not authorized");
@@ -91,19 +93,29 @@ export default function AccountingScreen(props){
     fetchInvoices();
   }, []);
 
+  
+
   /*-------------------------------------------------------------------------
     Accounting Screen
 
     Map function is used on state variable to itterate through each
     invoice and create a TruckAccountingData component for each one. This
     is included in the jsx as an object, as denoted by the curly braces.
+
+    
   -------------------------------------------------------------------------*/
   return (
     <div className="container">
       <h1>Invoices</h1>
         {isLoading && <div>Loading...</div>}
         {isLoading === false && <div className="cards">
-        {authenticated && invoices.map((invoice, idx) => {
+        <input
+          type="text"
+          placeholder="Search..."
+          className="filterSearch"
+          onChange={(e) => setDriverIdSearch(e.target.value)}
+        />
+        {authenticated && invoices.filter((invoice) => invoice.driver_id.includes(driverIdSearch)).map((invoice, idx) => {
           return(
             <LoadTicket invoice={invoice} key={idx}/>
           );
