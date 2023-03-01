@@ -52,6 +52,12 @@ function LoadTicket(props) {
   );
 }
 
+/*-------------------------------------------------------------------------
+  Filter Options Component
+
+  Author: Ryan Penrod - 2/28/2023
+  Description: Displays filter options radio buttons
+-------------------------------------------------------------------------*/
 function FilterOptions(props) {
 
   const handleFilterOptionChange = (e) => {
@@ -119,6 +125,9 @@ function FilterOptions(props) {
 
 /*-------------------------------------------------------------------------
   Accounting Screen Component
+
+  Last Updated: Ryan Penrod - 2/28/2023
+  Changes: added filtering functionality for tickets
 -------------------------------------------------------------------------*/
 export default function AccountingScreen(props){
 
@@ -181,7 +190,7 @@ export default function AccountingScreen(props){
           className="filter-search"
           onChange={(e) => setFilterSearch(e.target.value)}
         />
-        {authenticated && invoices.filter((invoice) => invoice[filterOption].includes(filterSearch)).map((invoice, idx) => {
+        {authenticated && invoices.filter((invoice) => invoice[filterOption].toString().includes(filterSearch)).map((invoice, idx) => {
           return(
             <LoadTicket invoice={invoice} key={idx}/>
           );
