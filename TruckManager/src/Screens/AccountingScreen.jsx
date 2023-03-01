@@ -66,54 +66,61 @@ function FilterOptions(props) {
 
   return (
     <div className="filter-options">
-      Search by:
+      <label htmlFor="search">
+        Search by:
+      </label>
       <form>
-        <label className="filter-radio-button">
+        <label className="filter-radio-button" htmlFor="driver_id">
           Driver ID
           <input
             type="radio"
             name="filterOption"
             value="driver_id"
+            id="driver_id"
             checked={props.filterOption === "driver_id"}
             onChange={handleFilterOptionChange}
           />
         </label>
-        <label className="filter-radio-button">
+        <label className="filter-radio-button" htmlFor="truck_number">
           Truck #
           <input
             type="radio"
             name="filterOption"
             value="truck_number"
+            id="truck_number"
             checked={props.filterOption === "truck_number"}
             onChange={handleFilterOptionChange}
           />
         </label>
-        <label className="filter-radio-button">
+        <label className="filter-radio-button" htmlFor="date">
           Date
           <input
             type="radio"
             name="filterOption"
             value="date"
+            id="date"
             checked={props.filterOption === "date"}
             onChange={handleFilterOptionChange}
           />
         </label>
-        <label className="filter-radio-button">
+        <label className="filter-radio-button" htmlFor="ticket_number">
           Ticket #
           <input
             type="radio"
             name="filterOption"
             value="ticket_number"
+            id="ticket_number"
             checked={props.filterOption === "ticket_number"}
             onChange={handleFilterOptionChange}
           />
         </label>
-        <label className="filter-radio-button">
+        <label className="filter-radio-button" htmlFor="order">
           Order #
           <input
             type="radio"
             name="filterOption"
             value="order"
+            id="order"
             checked={props.filterOption === "order"}
             onChange={handleFilterOptionChange}
           />
@@ -189,6 +196,7 @@ export default function AccountingScreen(props){
           type="text"
           placeholder="Search..."
           className="filter-search"
+          id="search"
           onChange={(e) => setFilterSearch(e.target.value)}
           value={filterSearch}
         />}
@@ -196,6 +204,7 @@ export default function AccountingScreen(props){
           <input
           type="datetime-local"
           className="filter-date-search"
+          id="search"
           onChange={(e) => setFilterSearch(e.target.value)}
           value={filterSearch}
         />}
