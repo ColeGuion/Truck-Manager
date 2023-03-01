@@ -8,64 +8,47 @@ import API_URL from'../config.json';
 import { useNavigate } from 'react-router-dom';
 
 /*-------------------------------------------------------------------------
-  Accounting Data Component
-
-  This will display every invoice and all the data it has.
-
-  TODO: refactor so it will only display data under correct truck number.
+  Load Ticket Component
+  Displays Load Ticket information
 -------------------------------------------------------------------------*/
-function TruckAccoutingData({invoice}) {
+function LoadTicket(props) {
+  let formattedDate = new Date(props.invoice.date);
+  formattedDate = formattedDate.toLocaleDateString() + ' ' + formattedDate.toLocaleTimeString();
+  const total = (props.invoice.rate * props.invoice.tons).toFixed(2);
   return (
     <div className="card-outer">
       <div className="card">
-        <div className="truckNum">
-          Truck #: {invoice.truck_number}
+          <div className="truckNum">
+            Truck #: {props.invoice.truck_number}
+          </div>
+          <div className="driver">
+            Driver: {props.invoice.driver_id}
+          </div>
         </div>
-        <div className="driver">
-          Driver: {invoice.driver_id}
-        </div>
-      </div>
-      <InvoiceData invoice={invoice}/>
-      <div className="card-bottom">
-        <div className="truckTotal">
-          Truck Total:
-        </div>
-      </div>
-    </div>
-  );
-}
-/*-------------------------------------------------------------------------
-  Invoice Data Component
-
-  Displays date, ticket_number, order, hours, tons, and rate
--------------------------------------------------------------------------*/
-function InvoiceData({invoice}) {
-  let formattedDate = new Date(invoice.date);
-  formattedDate = formattedDate.toLocaleDateString() + ' ' + formattedDate.toLocaleTimeString();
-  return (
-    <div className="card-inner">
+        <div className="card-inner">
         <div>
           Date: {formattedDate}
         </div>
         <div>
-          Ticket #: {invoice.ticket_number}
+          Ticket #: {props.invoice.ticket_number}
         </div>
         <div>
-          Order #: {invoice.order}
+          Order #: {props.invoice.order}
         </div>
         <div>
-          Hours: {invoice.hours}
+          Hours: {props.invoice.hours}
         </div>
         <div>
-          Tons: {invoice.tons}
+          Tons: {props.invoice.tons}
         </div>
         <div>
-          Unit Price: ${invoice.rate}
+          Unit Price: ${props.invoice.rate}
         </div>
         <div>
-          Total: ${(invoice.rate * invoice.tons).toFixed(2)}
+          Total: ${total}
         </div>
       </div>
+    </div>
   );
 }
 
@@ -122,7 +105,7 @@ export default function AccountingScreen(props){
         {isLoading === false && <div className="cards">
         {authenticated && invoices.map((invoice, idx) => {
           return(
-            <TruckAccoutingData invoice={invoice} key={idx}/>
+            <LoadTicket invoice={invoice} key={idx}/>
           );
         })}
         {!authenticated && <h1 style={{textAlign: 'center', color: 'red'}}>not authorized</h1>}
