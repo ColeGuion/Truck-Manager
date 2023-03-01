@@ -102,7 +102,8 @@ export default function AccountingScreen(props){
     invoice and create a TruckAccountingData component for each one. This
     is included in the jsx as an object, as denoted by the curly braces.
 
-    
+    Last Updated: Ryan Penrod 2/28/23
+    Changes: Added filtering functionality for tickets
   -------------------------------------------------------------------------*/
   return (
     <div className="container">
@@ -112,7 +113,7 @@ export default function AccountingScreen(props){
         <input
           type="text"
           placeholder="Search..."
-          className="filterSearch"
+          className="filter-search"
           onChange={(e) => setDriverIdSearch(e.target.value)}
         />
         {authenticated && invoices.filter((invoice) => invoice.driver_id.includes(driverIdSearch)).map((invoice, idx) => {
