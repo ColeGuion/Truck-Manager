@@ -22,6 +22,9 @@ function LoadTicket(props) {
     Description: makes request to backend to delete this load ticket
   */
   async function deleteTicket() {
+    if(confirm("Delete this ticket?") == false){
+      return;
+    }
     const response = await fetch(`${API_URL.API_URL}/deleteinvoice`, {
       method: 'DELETE',
       headers: {
@@ -178,6 +181,7 @@ export default function AccountingScreen(props){
   const [filterOption, setFilterOption] = useState("driver_id");
   const [filterSearch, setFilterSearch] = useState("");
   const [deletedTicket, setDeletedTicket] = useState(0);
+  const [confirmDeletion, setConfirmDeletion] = useState(false);
   const navigate = useNavigate();
 
   /*-------------------------------------------------------------------------
@@ -214,6 +218,7 @@ export default function AccountingScreen(props){
         }
       })
       setInvoices(copyOfInvoices);
+      setDeletedTicket(0);
     }
   }, [deletedTicket]);
 
@@ -257,7 +262,7 @@ export default function AccountingScreen(props){
           .sort( (a,b) => {return parseInt(a[filterOption], 10) > parseInt(b[filterOption], 10) ? 1 : -1} )
           .map((invoice) => {
             return(
-              <LoadTicket invoice={invoice} key={invoice.ticket_id} setDeletedTicket={setDeletedTicket}/>
+              <LoadTicket invoice={invoice} key={invoice.ticket_id} setDeletedTicket={setDeletedTicket} setConfirmDeletion={setConfirmDeletion}/>
             );
           })}
         {!authenticated && <h1 style={{textAlign: 'center', color: 'red'}}>not authorized</h1>}
