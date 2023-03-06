@@ -47,9 +47,14 @@ export default function RegistrationScreen(){
       })
     });
     const created = await response.json();
-    //TODO: error handling
     if(created.message === "FAILED") {
       setSubmitError("Failed to create account, try again");
+    }
+    else if(created.message === 'employeeId') {
+      setSubmitError("Invalid Employee ID");
+    }
+    else if(created.message === 'exists') {
+      setSubmitError("Employee ID already in use");
     }
     else if(created.message === 'email') {
       setSubmitError("Invalid email!");
