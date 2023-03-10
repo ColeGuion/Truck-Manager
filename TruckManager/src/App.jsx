@@ -9,6 +9,7 @@ import ForgotPasswordScreen from './Screens/ForgotPasswordScreen.jsx';
 import LoadInvoicesScreen from './Screens/LoadInvoicesScreen.jsx';
 import AccountingScreen from './Screens/AccountingScreen.jsx';
 import UserProfileScreen from './Screens/UserProfileScreen.jsx';
+import ViewEmployees from './Screens/ViewEmployees.jsx';
 import ErrorBoundary from './Screens/ErrorBoundary';
 import {
   createBrowserRouter,
@@ -48,6 +49,9 @@ function App() {
     },
     {
       path: "/addemployee", element: <AddEmployee />, errorElement: <ErrorBoundary />,
+    },
+    {
+      path: "/employees", element: <ViewEmployees />, errorElement: <ErrorBoundary />,
     },
     ]);
 
