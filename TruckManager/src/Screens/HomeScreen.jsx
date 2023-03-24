@@ -67,19 +67,21 @@ export default function HomeScreen(){
               Logout
             </button>
           </div>
-          <h1>Truck Manager</h1>
-          <button className="home-btns" onClick = { () => navigate("/loadinvoice") }>
-            Submit Load Ticket
-          </button>
-          <button className="home-btns" onClick = { () => navigate("/accounting") }>
-            Invoices
-          </button>
-          {isAdmin && <button className="home-btns" onClick = { () => navigate("/addemployee") }>
-            Add Employee
-          </button>}
-          {isAdmin && <button className="home-btns" onClick = { () => navigate("/employees") }>
-            View Employees
-          </button>}
+            <h1>Truck Manager</h1>
+            <div>
+            <button className="home-btns" onClick = { () => navigate("/loadinvoice") }>
+              Submit Load Ticket
+            </button>
+            <button className="home-btns" onClick = { () => navigate("/accounting") }>
+              Invoices
+            </button>
+            {isAdmin && <button className="home-btns" onClick = { () => navigate("/addemployee") }>
+              Add Employee
+            </button>}
+            {isAdmin && <button className="home-btns" onClick = { () => navigate("/employees") }>
+              View Employees
+            </button>}
+          </div>
         </>}
         {!authenticated && <h1 style={{textAlign: 'center', color: 'red'}}>not authorized</h1>}
       </div>
