@@ -37,14 +37,35 @@ export default function HomeScreen(){
       }
       fetchCurrentUser();
   },[])
+
+  async function logout() {
+    console.log("here");
+    const response = await fetch(`${APIURL}/logout`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include'
+      });
+      const loggedOut = await response.json();
+      if(loggedOut.response === "logged out") {
+        navigate("/");
+      }
+  }
   /*-------------------------------------------------------------------------
     Home Screen
   -------------------------------------------------------------------------*/
   return (
       <div className="container">
         {authenticated && <>
-          <div className="user-profile-link" onClick = { () => navigate("/user") }>
-            User Profile
+          <div className="user-options">
+            <button className="option-button" onClick = { () => navigate("/user") }>
+              User Profile
+            </button>  
+            <button className="option-button" onClick = {logout}>
+              Logout
+            </button>
           </div>
           <h1>Truck Manager</h1>
           <button className="home-btns" onClick = { () => navigate("/loadinvoice") }>

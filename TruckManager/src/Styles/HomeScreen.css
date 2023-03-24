@@ -1,14 +1,14 @@
-.user-profile-link {
-    position: relative;
+.option-button {
     left: 30%;
     margin: 20px;
     margin-bottom: 0px;
     margin-top: 20px;
 }
-.user-profile-link {
-    cursor: pointer;
+.user-options {
+    position: relative;
+    left: 30%;
+    display: flex;
 }
-
 .home-btns {
     width: 250px;
     height: 250px;

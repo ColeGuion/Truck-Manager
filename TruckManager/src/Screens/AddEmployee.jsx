@@ -37,6 +37,7 @@ export default function AddEmployee(){
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
+      credentials: 'include',
       body: JSON.stringify({
         employeeId: employeeId,
         firstName: firstName,
