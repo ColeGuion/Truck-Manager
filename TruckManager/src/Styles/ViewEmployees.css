@@ -1,0 +1,48 @@
+.page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    min-height: 300px;
+    width: 300px;
+    padding-bottom: 20px;
+}
+.info {
+    text-align: left;
+    min-width: 300px;
+}
+
+.filter-search {
+    border: 1px solid white;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.filter-date-search {
+    border: 1px solid white;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.filter-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.filter-radio-button {
+    margin-left: 10px;
+    margin-right: 10px;
+}
