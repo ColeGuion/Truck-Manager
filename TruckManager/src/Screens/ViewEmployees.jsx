@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import '../Styles/GlobalStyles.css';
 import '../Styles/UserProfileScreen.css';
 import API_URL from'../config.json';
+import { TiArrowBack,TiArrowBackOutline } from "react-icons/ti";
+import logo from '../Logo_Files/png/logo-header.png'
 
 const APIURL = API_URL.API_URL;
 
@@ -53,6 +55,7 @@ export default function ViewEmployees() {
     const [employees, setEmployees] = useState([{}]);
     const [filterOption, setFilterOption] = useState("Name");
     const [filterSearch, setFilterSearch] = useState("");
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function fetchEmployees() {
@@ -65,6 +68,12 @@ export default function ViewEmployees() {
 
     return (
         <div className="page-container">
+            <img className="Logo-header" src={logo} alt="Logo" />
+            <div className="back-button" onClick = { () => navigate(-1) }>
+                <TiArrowBackOutline className="icon1" size="70px" />
+                <TiArrowBack className="icon2" size="70px" />
+            </div>
+            
             <h1>Employees</h1>
             <FilterOptions filterOption={filterOption} setFilterOption={setFilterOption}/>
             <input
@@ -93,6 +102,7 @@ export default function ViewEmployees() {
                     </div>
                 );
             })}
+            
         </div>
     );
 }
