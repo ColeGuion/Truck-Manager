@@ -6,6 +6,8 @@ import '../Styles/GlobalStyles.css';
 import '../Styles/AccountingScreen.css';
 import API_URL from'../config.json';
 import { useNavigate } from 'react-router-dom';
+import { TiArrowBack,TiArrowBackOutline } from "react-icons/ti";
+import logo from '../Logo_Files/png/logo-header.png'
 
 /*-------------------------------------------------------------------------
   Load Ticket Component
@@ -15,7 +17,8 @@ function LoadTicket(props) {
   let formattedDate = new Date(props.invoice.date);
   formattedDate = formattedDate.toLocaleDateString() + ' ' + formattedDate.toLocaleTimeString();
   const total = (props.invoice.rate * props.invoice.tons).toFixed(2);
-  
+  const navigate = useNavigate();
+
   /*
     Author: Mason Otto
     Created: 3/1/2023
@@ -234,6 +237,12 @@ export default function AccountingScreen(props){
   -------------------------------------------------------------------------*/
   return (
     <div className="container">
+      <img className="Logo-header" src={logo} alt="Logo" />
+      <div className="back-button" onClick = { () => navigate(-1) }>
+        <TiArrowBackOutline className="icon1" size="70px" />
+        <TiArrowBack className="icon2" size="70px" />
+      </div>
+
       <h1>Invoices</h1>
         {isLoading && <div>Loading...</div>}
         {isLoading === false && <div className="cards">
