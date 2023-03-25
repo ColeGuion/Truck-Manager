@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import '../Styles/GlobalStyles.css';
 import '../Styles/RegistrationScreen.css';
 import API_URL from'../config.json';
+import { TiArrowBack,TiArrowBackOutline } from "react-icons/ti";
+import logo from '../Logo_Files/png/logo-header.png'
 
 /*-------------------------------------------------------------------------
   Registration Component
@@ -97,6 +99,12 @@ export default function RegistrationScreen(){
   -------------------------------------------------------------------------*/
   return(
       <div className="container">
+        <img className="Logo-header" src={logo} alt="Logo" />
+        <div className="back-button" onClick = { () => navigate(-1) }>
+          <TiArrowBackOutline className="icon1" size="70px" />
+          <TiArrowBack className="icon2" size="70px" />
+        </div>
+
         <h1>Create Account</h1>
         <form className="form-register" onSubmit={handleSubmit} autoComplete="off">
             {submitError.length > 0 && <div style={{color:'red', fontWeight:'bold', margin:'10px'}}>{submitError}</div>}

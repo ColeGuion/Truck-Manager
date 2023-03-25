@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import '../Styles/GlobalStyles.css';
 import '../Styles/SignInScreen.css';
 import API_URL from'../config.json';
+import logo from '../Logo_Files/png/logo-header.png'
+import { AiOutlineLogin } from "react-icons/ai";
 
 /*-------------------------------------------------------------------------
   Sign In Component
@@ -43,8 +45,6 @@ export default function SignInScreen(){
     return validation.accepted;
   }
 
-
-
   //Temporary -- will eventually validate with usernames and passwords from database server.
   const validateSignIn = async (e) => {
     e.preventDefault();
@@ -76,6 +76,8 @@ export default function SignInScreen(){
   -------------------------------------------------------------------------*/
   return(
       <div className="container">
+        <img className="Logo-header" src={logo} alt="Logo" />
+        
         <h1>Sign In</h1>
         <form className="form-login" onSubmit={validateSignIn}>
           {loginError.length > 0 && <div style={{color:'red', fontWeight:'bold', margin:'10px'}}>{loginError}</div>}
@@ -94,7 +96,7 @@ export default function SignInScreen(){
                 value={password}
                 onChange={(e) => setPassword(e.target.value)} 
               />
-          <button className="login-btn" type="submit">Login</button>
+          <button className="login-btn" type="submit">Login <AiOutlineLogin color="green"/> </button>
           <div className="sign-in-link-container">
             <span className="register-link" onClick={() => register()}>Create account</span>
             <span className="fgt-pass-link" onClick={() => forgotPassword()}>Forgot password</span>

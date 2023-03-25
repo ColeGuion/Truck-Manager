@@ -7,6 +7,9 @@ import '../Styles/GlobalStyles.css';
 import '../Styles/LoadInvoicesScreen.css';
 import API_URL from'../config.json';
 import { useNavigate } from 'react-router-dom';
+import { TiArrowBack,TiArrowBackOutline } from "react-icons/ti";
+import logo from '../Logo_Files/png/logo-header.png'
+
 
 
 //TODO: make date useState an actual date variable so it can work with the database
@@ -109,49 +112,53 @@ export default function LoadInvoicesScreen({ navigation }){
   -------------------------------------------------------------------------*/
   return (
       <div className="container">
-          <h1>
-            Load Ticket
-          </h1>
-          <form className="form-load" onSubmit={handleSubmitChecker}>
-            {submitError.length > 0 && <div id="error" style={{color:'red', fontWeight:'bold', margin:'10px'}}>{submitError}</div>}
-            <div className="softContainer">
-              <label className="load-label" htmlFor="date">Date</label>
-              <input className="load-input-field" id="date" type="datetime-local" onChange={(e) => setDate(e.target.value)} value={date}/>
-            </div>
-            <div className="softContainer">
-              <label className="load-label" htmlFor="driver">Driver</label> 
-              <input className="load-input-field" id="driver" onChange={(e) => setDriver(e.target.value)} value={driver}/>
-            </div>
-            <div className="softContainer">
-              <label className="load-label" htmlFor="trucknum">Truck #</label>
-              <input className="load-input-field" id="trucknum" onChange={(e) => setTruckNum(e.target.value)} value={truckNum}/>
-            </div>
-            <div className="softContainer">
-              <label className="load-label" htmlFor="description">Description</label>
-              <input className="load-input-field" id="description" onChange={(e) => setDescription(e.target.value)} value={description}/>
-            </div>
-            <div className="softContainer">
-            <label className="load-label" htmlFor="ordernum">Order #</label>
-              <input className="load-input-field"id="ordernum" onChange={(e) => setOrderNum(e.target.value)} value={orderNum}/>
-            </div>
-            <div className="softContainer">
-              <label className="load-label" htmlFor="ticketnum">Ticket #</label>
-              <input className="load-input-field" id="ticketnum" onChange={(e) => setTicketNum(e.target.value)} value={ticketNum}/>
-            </div>
-            <div className="softContainer">
-              <label className="load-label" htmlFor="tons">Tons</label>
-              <input className="load-input-field" id="tons" onChange={(e) => setTons(e.target.value)} value={tons}/>
-            </div>
-            <div className="softContainer">
-              <label className="load-label" htmlFor="hours">Hours</label>
-              <input className="load-input-field" id="hours" onChange={(e) => setHours(e.target.value)} value={hours}/>
-            </div>
-            <div className="softContainer">
-              <label className="load-label" htmlFor="unitprice">Unit Price</label>
-              <input className="load-input-field" id="unitprice" onChange={(e) => setUnitPrice(e.target.value)} value={unitPrice}/>
-            </div>
-            <button className="load-btn" type="submit">Submit</button>
-          </form>
+        <img className="Logo-header" src={logo} alt="Logo" />
+        <div className="back-button" onClick = { () => navigate(-1) }>
+          <TiArrowBackOutline className="icon1" size="70px" />
+          <TiArrowBack className="icon2" size="70px" />
+        </div>
+
+        <h1> Load Ticket </h1>
+        <form className="form-load" onSubmit={handleSubmitChecker}>
+          {submitError.length > 0 && <div id="error" style={{color:'red', fontWeight:'bold', margin:'10px'}}>{submitError}</div>}
+          <div className="softContainer">
+            <label className="load-label" htmlFor="date">Date</label>
+            <input className="load-input-field" id="date" type="datetime-local" onChange={(e) => setDate(e.target.value)} value={date}/>
+          </div>
+          <div className="softContainer">
+            <label className="load-label" htmlFor="driver">Driver</label> 
+            <input className="load-input-field" id="driver" onChange={(e) => setDriver(e.target.value)} value={driver}/>
+          </div>
+          <div className="softContainer">
+            <label className="load-label" htmlFor="trucknum">Truck #</label>
+            <input className="load-input-field" id="trucknum" onChange={(e) => setTruckNum(e.target.value)} value={truckNum}/>
+          </div>
+          <div className="softContainer">
+            <label className="load-label" htmlFor="description">Description</label>
+            <input className="load-input-field" id="description" onChange={(e) => setDescription(e.target.value)} value={description}/>
+          </div>
+          <div className="softContainer">
+          <label className="load-label" htmlFor="ordernum">Order #</label>
+            <input className="load-input-field"id="ordernum" onChange={(e) => setOrderNum(e.target.value)} value={orderNum}/>
+          </div>
+          <div className="softContainer">
+            <label className="load-label" htmlFor="ticketnum">Ticket #</label>
+            <input className="load-input-field" id="ticketnum" onChange={(e) => setTicketNum(e.target.value)} value={ticketNum}/>
+          </div>
+          <div className="softContainer">
+            <label className="load-label" htmlFor="tons">Tons</label>
+            <input className="load-input-field" id="tons" onChange={(e) => setTons(e.target.value)} value={tons}/>
+          </div>
+          <div className="softContainer">
+            <label className="load-label" htmlFor="hours">Hours</label>
+            <input className="load-input-field" id="hours" onChange={(e) => setHours(e.target.value)} value={hours}/>
+          </div>
+          <div className="softContainer">
+            <label className="load-label" htmlFor="unitprice">Unit Price</label>
+            <input className="load-input-field" id="unitprice" onChange={(e) => setUnitPrice(e.target.value)} value={unitPrice}/>
+          </div>
+          <button className="load-btn" type="submit">Submit</button>
+        </form>
       </div>
   );
 

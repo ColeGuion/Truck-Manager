@@ -6,6 +6,9 @@ import '../Styles/GlobalStyles.css';
 import '../Styles/AccountingScreen.css';
 import API_URL from'../config.json';
 import { useNavigate } from 'react-router-dom';
+import { TiArrowBack,TiArrowBackOutline } from "react-icons/ti";
+import { AiFillDelete } from "react-icons/ai";
+import logo from '../Logo_Files/png/logo-header.png'
 
 /*-------------------------------------------------------------------------
   Load Ticket Component
@@ -15,7 +18,8 @@ function LoadTicket(props) {
   let formattedDate = new Date(props.invoice.date);
   formattedDate = formattedDate.toLocaleDateString() + ' ' + formattedDate.toLocaleTimeString();
   const total = (props.invoice.rate * props.invoice.tons).toFixed(2);
-  
+  const navigate = useNavigate();
+
   /*
     Author: Mason Otto
     Created: 3/1/2023
@@ -49,7 +53,9 @@ function LoadTicket(props) {
   return (
     <div className="card-outer">
       <div className="card">
-        <div className="delete-x" onClick={deleteTicket}>X</div>
+        <div className="delete-x" onClick={deleteTicket}>
+          <AiFillDelete size="35px" />
+        </div>
         <div className="truckNum">
           Truck #: {props.invoice.truck_number}
         </div>
@@ -229,11 +235,17 @@ export default function AccountingScreen(props){
     invoice and create a TruckAccountingData component for each one. This
     is included in the jsx as an object, as denoted by the curly braces.
 
-    Last Updated: Ryan Penrod 2/28/23
-    Changes: Added filtering functionality for tickets
+    Last Updated: Cole Guion 3/25/23
+    Changes: Added logo & back button
   -------------------------------------------------------------------------*/
   return (
     <div className="container">
+      <img className="Logo-header" src={logo} alt="Logo" />
+      <div className="back-button" onClick = { () => navigate(-1) }>
+        <TiArrowBackOutline className="icon1" size="70px" />
+        <TiArrowBack className="icon2" size="70px" />
+      </div>
+
       <h1>Invoices</h1>
         {isLoading && <div>Loading...</div>}
         {isLoading === false && <div className="cards">
