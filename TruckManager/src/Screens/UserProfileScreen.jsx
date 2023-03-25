@@ -5,6 +5,9 @@ import React, {useState, useEffect} from 'react';
 import '../Styles/GlobalStyles.css';
 import '../Styles/UserProfileScreen.css';
 import API_URL from'../config.json';
+import { useNavigate } from 'react-router-dom';
+import { TiArrowBack,TiArrowBackOutline } from "react-icons/ti";
+import logo from '../Logo_Files/png/logo-header.png'
 
 /*-------------------------------------------------------------------------
   User Profile Component
@@ -18,6 +21,8 @@ export default function UserProfileScreen({ navigation }){
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const navigate = useNavigate();
+
 
   /*
     Author: Mason Otto
@@ -46,7 +51,7 @@ export default function UserProfileScreen({ navigation }){
         setErrorMessage("");
     }
     fetchCurrentUser();
-},[])
+  },[])
 
   /*
     Author: Mason Otto
@@ -121,8 +126,15 @@ export default function UserProfileScreen({ navigation }){
   /*-------------------------------------------------------------------------
     User Profile Screen
   -------------------------------------------------------------------------*/
+  
   return (
       <div className="page-container">
+        <img className="Logo-header" src={logo} alt="Logo" />
+        <div className="back-button" onClick = { () => navigate(-1) }>
+          <TiArrowBackOutline className="icon1" size="70px" />
+          <TiArrowBack className="icon2" size="70px" />
+        </div>
+
         <h1>User Information</h1>
         {loading && <div>Loading...</div>}
         {errorMessage.length > 0 && <div id="error" style={{color:'red', fontWeight:'bold', margin:'10px'}}>{errorMessage}</div>}
@@ -222,7 +234,10 @@ export default function UserProfileScreen({ navigation }){
         <button onClick={() => {setUpdateInfo(false); setErrorMessage("");}}>Cancel</button>
         </div>}
         {!updateInfo && !loading && <button onClick={() => {setUpdateInfo(true)}}>Update</button>}
+
+
       </div>
+      
   );
 
 }
