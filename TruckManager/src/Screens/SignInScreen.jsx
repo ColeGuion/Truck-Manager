@@ -7,6 +7,7 @@ import '../Styles/GlobalStyles.css';
 import '../Styles/SignInScreen.css';
 import API_URL from'../config.json';
 import logo from '../Logo_Files/png/logo-header.png'
+import { AiOutlineLogin } from "react-icons/ai";
 
 /*-------------------------------------------------------------------------
   Sign In Component
@@ -95,7 +96,7 @@ export default function SignInScreen(){
                 value={password}
                 onChange={(e) => setPassword(e.target.value)} 
               />
-          <button className="login-btn" type="submit">Login</button>
+          <button className="login-btn" type="submit">Login <AiOutlineLogin color="green"/> </button>
           <div className="sign-in-link-container">
             <span className="register-link" onClick={() => register()}>Create account</span>
             <span className="fgt-pass-link" onClick={() => forgotPassword()}>Forgot password</span>
