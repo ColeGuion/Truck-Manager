@@ -67,8 +67,8 @@ export default function HomeScreen(){
               Logout
             </button>
           </div>
-            <h1>Truck Manager</h1>
-            <div>
+          <h1>Truck Manager</h1>
+            <div classname="home-btns-container">
             <button className="home-btns" onClick = { () => navigate("/loadinvoice") }>
               Submit Load Ticket
             </button>

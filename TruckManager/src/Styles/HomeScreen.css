@@ -14,3 +14,7 @@
     height: 250px;
     margin: 10px;
 }
+.home-bts-container {
+    display: flex;
+    flex-wrap: wrap;
+}
