@@ -3,6 +3,10 @@
     margin: 20px;
     margin-bottom: 0px;
     margin-top: 20px;
+    width: 120px;
+    text-align: center;
+    font-size: large;
+    padding: 10px;
 }
 
 .user-options {
@@ -15,4 +19,10 @@
     width: 250px;
     height: 250px;
     margin: 10px;
+}
+
+.btn-box {
+    display: flex;
+    justify-content: space-around;
+    min-width: 65%;
 }
