@@ -7,6 +7,7 @@ import '../Styles/AccountingScreen.css';
 import API_URL from'../config.json';
 import { useNavigate } from 'react-router-dom';
 import { TiArrowBack,TiArrowBackOutline } from "react-icons/ti";
+import { AiFillDelete } from "react-icons/ai";
 import logo from '../Logo_Files/png/logo-header.png'
 
 /*-------------------------------------------------------------------------
@@ -52,7 +53,9 @@ function LoadTicket(props) {
   return (
     <div className="card-outer">
       <div className="card">
-        <div className="delete-x" onClick={deleteTicket}>X</div>
+        <div className="delete-x" onClick={deleteTicket}>
+          <AiFillDelete size="35px" />
+        </div>
         <div className="truckNum">
           Truck #: {props.invoice.truck_number}
         </div>
@@ -232,8 +235,8 @@ export default function AccountingScreen(props){
     invoice and create a TruckAccountingData component for each one. This
     is included in the jsx as an object, as denoted by the curly braces.
 
-    Last Updated: Ryan Penrod 2/28/23
-    Changes: Added filtering functionality for tickets
+    Last Updated: Cole Guion 3/25/23
+    Changes: Added logo & back button
   -------------------------------------------------------------------------*/
   return (
     <div className="container">
