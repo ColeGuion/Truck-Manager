@@ -20,9 +20,3 @@
     height: 250px;
     margin: 10px;
 }
-
-.btn-box {
-    display: flex;
-    justify-content: space-around;
-    min-width: 65%;
-}
