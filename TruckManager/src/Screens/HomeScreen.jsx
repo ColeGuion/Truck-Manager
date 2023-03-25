@@ -16,7 +16,10 @@ import logo from '../Logo_Files/png/logo-header.png'
 import { HiOutlineLogout } from "react-icons/hi";
 import { CgProfile } from "react-icons/cg";
 import { TiArrowBack,TiArrowBackOutline } from "react-icons/ti";
-
+import { FaFileInvoiceDollar } from "react-icons/fa";
+import { TfiReceipt } from "react-icons/tfi";
+import { RxAvatar } from "react-icons/rx";
+import { MdAddCircleOutline } from "react-icons/md";
 
 
 /*-------------------------------------------------------------------------
@@ -67,7 +70,6 @@ export default function HomeScreen(){
   /*-------------------------------------------------------------------------
     Home Screen
   -------------------------------------------------------------------------*/
-  // <img className="logo-head" src={logo} alt="Logo" />
   return (
       <div className="container">
         <img className="Logo-header2" src={logo} alt="Logo" />
@@ -79,10 +81,11 @@ export default function HomeScreen(){
         {authenticated && <>
           <div className="user-options">
             <button className="option-button" onClick = { () => navigate("/user") }>
-              Profile <CgProfile />
+              <CgProfile size="20px"/><br/> Profile
+              
             </button>  
             <button className="option-button" onClick = {logout}>
-              Logout <HiOutlineLogout />
+              <HiOutlineLogout size="20px"/><br/> Sign Out
             </button>
           </div>
           
@@ -90,15 +93,23 @@ export default function HomeScreen(){
           <div>
             <button className="home-btns" onClick = { () => navigate("/loadinvoice") }>
               Submit Load Ticket
+              <br/><br/>
+              <TfiReceipt size="70px"/>
             </button>
             <button className="home-btns" onClick = { () => navigate("/accounting") }>
               Invoices
+              <br/><br/>
+              <FaFileInvoiceDollar size="70px"/>
             </button>
             {isAdmin && <button className="home-btns" onClick = { () => navigate("/addemployee") }>
               Add Employee
+              <br/><br/>
+              <MdAddCircleOutline size="70px"/>
             </button>}
             {isAdmin && <button className="home-btns" onClick = { () => navigate("/employees") }>
               View Employees
+              <br/><br/>
+              <RxAvatar size="70px"/>
             </button>}
           </div>
           
