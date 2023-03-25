@@ -1,5 +1,3 @@
-
-
 .fgt-pass-link {
     width: 100%;
     display: flex;
@@ -20,6 +18,11 @@
 
 .register-link:hover {
     cursor: pointer;
+}
+
+.logo {
+    position: relative;
+    margin-top: 50px;
 }
 
 .sign-in-link-container {
