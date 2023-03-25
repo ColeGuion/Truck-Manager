@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import '../Styles/GlobalStyles.css';
 import '../Styles/ForgotPasswordScreen.css'
 import API_URL from'../config.json';
+import { TiArrowBack,TiArrowBackOutline } from "react-icons/ti";
+import logo from '../Logo_Files/png/logo-header.png'
 
 const APIURL = API_URL.API_URL;
 
@@ -197,16 +199,24 @@ export default function ForgotPasswordScreen(){
   const [isValidated, setIsValidated] = useState(false);
   const [emailAddress, setEmailAddress] = useState("");
   const [sentOTPEmail, setSentOTPEmail] = useState(false);
+  const navigate = useNavigate();
 
   /*-------------------------------------------------------------------------
     Forgot Password Screen
   -------------------------------------------------------------------------*/
   return(
     <div className="container">
-        <h1>Forgot Password</h1>
-        {validatedEmployeeId === false && <ValidatingEmployeeId setGlobalEmployeeId={setGlobalEmployeeId} setValidatedEmployeeId={setValidatedEmployeeId}/>}
-        {validatedEmployeeId === true && isValidated === true && <ResetPassword globalEmployeeId={globalEmployeeId}/>}
-        {validatedEmployeeId === true && isValidated === false && <VerifyOTP globalEmployeeId={globalEmployeeId} emailAddress={emailAddress} setIsValidated={setIsValidated} setEmailAddress={setEmailAddress} sentOTPEmail={sentOTPEmail} setSentOTPEmail={setSentOTPEmail}/>}
+      <img className="Logo-header" src={logo} alt="Logo" />
+      <div className="back-button" onClick = { () => navigate(-1) }>
+        <TiArrowBackOutline className="icon1" size="70px" />
+        <TiArrowBack className="icon2" size="70px" />
+      </div>
+
+      <h1>Forgot Password</h1>
+      {validatedEmployeeId === false && <ValidatingEmployeeId setGlobalEmployeeId={setGlobalEmployeeId} setValidatedEmployeeId={setValidatedEmployeeId}/>}
+      {validatedEmployeeId === true && isValidated === true && <ResetPassword globalEmployeeId={globalEmployeeId}/>}
+      {validatedEmployeeId === true && isValidated === false && <VerifyOTP globalEmployeeId={globalEmployeeId} emailAddress={emailAddress} setIsValidated={setIsValidated} setEmailAddress={setEmailAddress} sentOTPEmail={sentOTPEmail} setSentOTPEmail={setSentOTPEmail}/>}
+
     </div>
   )
     
