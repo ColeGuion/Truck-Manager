@@ -4,13 +4,15 @@
     justify-content: center;
     align-items: center;
 }
+
 .container {
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
+
 .link {
     border-radius: 8px;
     border: 1px solid transparent;
@@ -23,15 +25,18 @@
     transition: border-color 0.25s;
     margin: 10px;
     color: rgba(255, 255, 255, 0.87);
-  }
-  .link:hover {
+}
+
+.link:hover {
     border-color: #646cff;
     color: rgba(255, 255, 255, 0.87);
-  }
-  .link:focus,
-  .link:focus-visible {
+}
+
+.link:focus,
+.link:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
 }
+
 .logo {
     height: auto;
     width: auto;
@@ -46,14 +51,17 @@
     border-radius: 10px;
     margin-bottom: 20px;
 }
+
 .input-field:focus {
     outline: none !important;
 }
+
 .container-inner {
     padding: 50px;
     border: 1px;
     border-radius: 20px;
 }
+
 .form-login {
     display: flex;
     flex-direction: column;
@@ -73,4 +81,40 @@
     width: 100%;
     text-align: left;
     padding-bottom: 5px;
+}
+
+.back-button {
+    position: fixed;
+    top: 1%;
+    left: 1%;
+    color: rgb(27, 103, 39);
+}
+
+.back-button .icon2 {
+    display: none;
+}
+
+.back-button:hover .icon1 {
+    display: none;
+}
+
+.back-button:hover .icon2 {
+    display: block;
+}
+
+.Logo-header2 {
+    position: fixed;
+    top: 0%;
+    width: 20%;
+}
+
+.Logo-header {
+    position: relative;
+    width: 20%;
+    height: 8%;
+}
+
+.Logo-header img {
+    width: 100%;
+    height: 100%;
 }
