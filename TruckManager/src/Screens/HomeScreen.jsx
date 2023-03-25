@@ -7,6 +7,17 @@ import { useNavigate } from 'react-router-dom';
 import '../Styles/GlobalStyles.css';
 import '../Styles/HomeScreen.css';
 import API_URL from'../config.json';
+import logo from '../Logo_Files/png/logo-header.png'
+
+/*-------------------------------------------------------------------------
+  Import Icons
+-------------------------------------------------------------------------*/
+// React Icons Library: https://react-icons.github.io/react-icons
+import { HiOutlineLogout } from "react-icons/hi";
+import { CgProfile } from "react-icons/cg";
+import { TiArrowBack,TiArrowBackOutline } from "react-icons/ti";
+
+
 
 /*-------------------------------------------------------------------------
   Home Screen Component
@@ -56,19 +67,27 @@ export default function HomeScreen(){
   /*-------------------------------------------------------------------------
     Home Screen
   -------------------------------------------------------------------------*/
+  // <img className="logo-head" src={logo} alt="Logo" />
   return (
       <div className="container">
+        <img className="Logo-header2" src={logo} alt="Logo" />
+        <div className="back-button" onClick = { () => navigate(-1) }>
+          <TiArrowBackOutline className="icon1" size="70px" />
+          <TiArrowBack className="icon2" size="70px" />
+        </div>
+
         {authenticated && <>
           <div className="user-options">
             <button className="option-button" onClick = { () => navigate("/user") }>
-              User Profile
+              Profile <CgProfile />
             </button>  
             <button className="option-button" onClick = {logout}>
-              Logout
+              Logout <HiOutlineLogout />
             </button>
           </div>
-            <h1>Truck Manager</h1>
-            <div>
+          
+          <h1>Truck Manager</h1>
+          <div>
             <button className="home-btns" onClick = { () => navigate("/loadinvoice") }>
               Submit Load Ticket
             </button>
@@ -82,6 +101,7 @@ export default function HomeScreen(){
               View Employees
             </button>}
           </div>
+          
         </>}
         {!authenticated && <h1 style={{textAlign: 'center', color: 'red'}}>not authorized</h1>}
       </div>
