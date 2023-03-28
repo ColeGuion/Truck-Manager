@@ -7,8 +7,8 @@ import '../Styles/GlobalStyles.css';
 import '../Styles/LoadInvoicesScreen.css';
 import API_URL from'../config.json';
 import { useNavigate } from 'react-router-dom';
-import { TiArrowBack,TiArrowBackOutline } from "react-icons/ti";
-import logo from '../Logo_Files/png/logo-header.png'
+import { TiArrowLeftOutline,TiArrowLeftThick } from "react-icons/ti";
+import logo from '../Logo_Files/png/logo-no-background.png'
 
 
 
@@ -112,12 +112,9 @@ export default function LoadInvoicesScreen({ navigation }){
   -------------------------------------------------------------------------*/
   return (
       <div className="container">
-        <img className="Logo-header" src={logo} alt="Logo" />
-        <div className="back-button" onClick = { () => navigate(-1) }>
-          <TiArrowBackOutline className="icon1" size="70px" />
-          <TiArrowBack className="icon2" size="70px" />
-        </div>
-
+        <span className="header">
+          <img className="logo-left" src={logo} alt="Logo" onClick = { () => navigate(-1) } />
+        </span>
         <h1> Load Ticket </h1>
         <form className="form-load" onSubmit={handleSubmitChecker}>
           {submitError.length > 0 && <div id="error" style={{color:'red', fontWeight:'bold', margin:'10px'}}>{submitError}</div>}

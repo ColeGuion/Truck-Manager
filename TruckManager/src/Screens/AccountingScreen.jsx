@@ -6,9 +6,9 @@ import '../Styles/GlobalStyles.css';
 import '../Styles/AccountingScreen.css';
 import API_URL from'../config.json';
 import { useNavigate } from 'react-router-dom';
-import { TiArrowBack,TiArrowBackOutline } from "react-icons/ti";
+import { TiArrowLeftOutline,TiArrowLeftThick } from "react-icons/ti";
 import { AiFillDelete } from "react-icons/ai";
-import logo from '../Logo_Files/png/logo-header.png'
+import logo from '../Logo_Files/png/logo-no-background.png'
 
 /*-------------------------------------------------------------------------
   Load Ticket Component
@@ -240,12 +240,9 @@ export default function AccountingScreen(props){
   -------------------------------------------------------------------------*/
   return (
     <div className="container">
-      <img className="Logo-header" src={logo} alt="Logo" />
-      <div className="back-button" onClick = { () => navigate(-1) }>
-        <TiArrowBackOutline className="icon1" size="70px" />
-        <TiArrowBack className="icon2" size="70px" />
-      </div>
-
+      <span className="header">
+        <img className="logo-left" src={logo} alt="Logo" onClick = { () => navigate(-1) } />
+      </span>
       <h1>Invoices</h1>
         {isLoading && <div>Loading...</div>}
         {isLoading === false && <div className="cards">

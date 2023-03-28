@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import '../Styles/GlobalStyles.css';
 import '../Styles/UserProfileScreen.css';
 import API_URL from'../config.json';
-import { TiArrowBack,TiArrowBackOutline } from "react-icons/ti";
-import logo from '../Logo_Files/png/logo-header.png'
+import { TiArrowLeftThick,TiArrowLeftOutline } from "react-icons/ti";
+import logo from '../Logo_Files/png/logo-no-background.png'
 
 const APIURL = API_URL.API_URL;
 
@@ -67,13 +67,10 @@ export default function ViewEmployees() {
     }, [])
 
     return (
-        <div className="page-container">
-            <img className="Logo-header" src={logo} alt="Logo" />
-            <div className="back-button" onClick = { () => navigate(-1) }>
-                <TiArrowBackOutline className="icon1" size="70px" />
-                <TiArrowBack className="icon2" size="70px" />
-            </div>
-            
+        <div className="container">
+            <span className="header">
+                <img className="logo-left" src={logo} alt="Logo" onClick = { () => navigate(-1) } />
+            </span>
             <h1>Employees</h1>
             <FilterOptions filterOption={filterOption} setFilterOption={setFilterOption}/>
             <input

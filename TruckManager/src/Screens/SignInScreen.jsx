@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import '../Styles/GlobalStyles.css';
 import '../Styles/SignInScreen.css';
 import API_URL from'../config.json';
-import logo from '../Logo_Files/png/logo-header.png'
+import logo from '../Logo_Files/png/logo-no-background.png'
 import { AiOutlineLogin } from "react-icons/ai";
 
 /*-------------------------------------------------------------------------
@@ -76,9 +76,8 @@ export default function SignInScreen(){
   -------------------------------------------------------------------------*/
   return(
       <div className="container">
-        <img className="Logo-header" src={logo} alt="Logo" />
+        <img className="logo" src={logo} alt="Truck Manager Logo" />
         
-        <h1>Sign In</h1>
         <form className="form-login" onSubmit={validateSignIn}>
           {loginError.length > 0 && <div style={{color:'red', fontWeight:'bold', margin:'10px'}}>{loginError}</div>}
               <label className="input-label" htmlFor='employeeId'>Employee ID</label>
@@ -96,7 +95,7 @@ export default function SignInScreen(){
                 value={password}
                 onChange={(e) => setPassword(e.target.value)} 
               />
-          <button className="login-btn" type="submit">Login <AiOutlineLogin color="green"/> </button>
+          <button className="login-btn" type="submit">Login</button>
           <div className="sign-in-link-container">
             <span className="register-link" onClick={() => register()}>Create account</span>
             <span className="fgt-pass-link" onClick={() => forgotPassword()}>Forgot password</span>

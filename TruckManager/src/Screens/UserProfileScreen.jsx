@@ -6,8 +6,8 @@ import '../Styles/GlobalStyles.css';
 import '../Styles/UserProfileScreen.css';
 import API_URL from'../config.json';
 import { useNavigate } from 'react-router-dom';
-import { TiArrowBack,TiArrowBackOutline } from "react-icons/ti";
-import logo from '../Logo_Files/png/logo-header.png'
+import { TiArrowLeftThick,TiArrowLeftOutline } from "react-icons/ti";
+import logo from '../Logo_Files/png/logo-no-background.png'
 
 /*-------------------------------------------------------------------------
   User Profile Component
@@ -128,13 +128,10 @@ export default function UserProfileScreen({ navigation }){
   -------------------------------------------------------------------------*/
   
   return (
-      <div className="page-container">
-        <img className="Logo-header" src={logo} alt="Logo" />
-        <div className="back-button" onClick = { () => navigate(-1) }>
-          <TiArrowBackOutline className="icon1" size="70px" />
-          <TiArrowBack className="icon2" size="70px" />
-        </div>
-
+      <div className="container">
+        <span className="header">
+          <img className="logo-left" src={logo} alt="Logo" onClick = { () => navigate(-1) } />
+        </span>
         <h1>User Information</h1>
         {loading && <div>Loading...</div>}
         {errorMessage.length > 0 && <div id="error" style={{color:'red', fontWeight:'bold', margin:'10px'}}>{errorMessage}</div>}
