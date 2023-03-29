@@ -175,7 +175,7 @@ function VerifyOTP(props) {
   return (
     <>
       {props.sentOTPEmail && 
-        <div className="container">
+        <div className="">
           {!(otpError.length > 0) && <p>A One Time Pin was sent to {props.emailAddress}</p>}
           {otpError.length > 0 && <div style={{color:'red', fontWeight:'bold', margin:'10px'}}>{otpError}</div>}
           <form className="form-verify-otp" onSubmit={validateOTP}>

@@ -227,10 +227,10 @@ export default function UserProfileScreen({ navigation }){
         </div>
         }
         {updateInfo && !loading && <div>
-        <button onClick={saveUserInfo}>Save</button>
-        <button onClick={() => {setUpdateInfo(false); setErrorMessage("");}}>Cancel</button>
+        <button className="btns" onClick={saveUserInfo}>Save</button>
+        <button className="btns" onClick={() => {setUpdateInfo(false); setErrorMessage("");}}>Cancel</button>
         </div>}
-        {!updateInfo && !loading && <button onClick={() => {setUpdateInfo(true)}}>Update</button>}
+        {!updateInfo && !loading && <button className="btns" onClick={() => {setUpdateInfo(true)}}>Update</button>}
 
 
       </div>
