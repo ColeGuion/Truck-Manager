@@ -31,6 +31,14 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+}
+.card-outer:hover {
+    background-color: #2b2b2b;
+    box-shadow: 0px 4px 8px rgba(43, 43, 43, 0.4);
+    color: #fff;
+    transform: translateY(-1px);
 }
 .card-bottom {
     width: 100%; 
