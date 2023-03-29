@@ -4,14 +4,25 @@
     justify-content: center;
     align-items: center;
 }
-.info-container {
+.user-info-container {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     min-height: 300px;
     width: 300px;
-    padding-bottom: 20px;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    border: 2px solid rgba(0, 0, 0, .1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, .1);
+    transition: all 0.3s ease 0s;
+}
+.user-info-container:hover {
+    background-color: #2b2b2b;
+    box-shadow: 0px 4px 8px rgba(43, 43, 43, 0.4);
+    color: #fff;
+    transform: translateY(-1px);
 }
 .info {
     text-align: left;

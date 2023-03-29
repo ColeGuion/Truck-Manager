@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Styles/GlobalStyles.css';
 import '../Styles/UserProfileScreen.css';
+import '../Styles/ViewEmployees.css';
 import API_URL from'../config.json';
 import { TiArrowLeftThick,TiArrowLeftOutline } from "react-icons/ti";
 import logo from '../Logo_Files/png/logo-no-background.png'
@@ -86,7 +87,7 @@ export default function ViewEmployees() {
           .sort( (a,b) => {return parseInt(a[filterOption], 10) > parseInt(b[filterOption], 10) ? 1 : -1} )
           .map((employee, idx) => {
                 return (
-                    <div className="info-container" key={idx}>
+                    <div className="user-info-container" key={idx}>
                         <span className="info">Name:  {employee.Name || "N/A"}</span>
                         <span className="info">Employee ID:  {employee.Employee_ID || "N/A"}</span>
                         <span className="info">Email:  {employee.Email || "N/A"}</span>
