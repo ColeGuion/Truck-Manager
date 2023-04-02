@@ -99,7 +99,6 @@ export default function SignInScreen(){
           <div className="sign-in-link-container">
             <span className="register-link" onClick={() => register()}>Create account</span>
             <span className="fgt-pass-link" onClick={() => forgotPassword()}>Forgot password</span>
-            <span className="register-link" onClick={() => navigate("/addemployee")}>Add Employee</span>
           </div>
         </form>
       </div>

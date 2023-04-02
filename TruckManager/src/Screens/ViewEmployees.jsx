@@ -8,8 +8,8 @@ import '../Styles/GlobalStyles.css';
 import '../Styles/UserProfileScreen.css';
 import '../Styles/ViewEmployees.css';
 import API_URL from'../config.json';
-import { TiArrowLeftThick,TiArrowLeftOutline } from "react-icons/ti";
 import logo from '../Logo_Files/png/logo-no-background.png'
+import { AiFillDelete } from "react-icons/ai";
 
 const APIURL = API_URL.API_URL;
 
@@ -52,11 +52,53 @@ function FilterOptions(props) {
     );
 }
 
+
+
 export default function ViewEmployees() {
     const [employees, setEmployees] = useState([{}]);
     const [filterOption, setFilterOption] = useState("Name");
     const [filterSearch, setFilterSearch] = useState("");
     const navigate = useNavigate();
+
+    /*
+        Author: Mason Otto
+        Created: 3/1/2023
+        Description: makes request to backend to delete this load ticket
+    */
+    // async function deleteEmployee(employee_id) {
+    //     if(confirm("Delete this employee?") == false){
+    //         return;
+    //     }
+    //     const response = await fetch(`${API_URL}/deleteemployee`, {
+    //         method: 'DELETE',
+    //         headers: {
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json'
+    //         },
+    //         credentials: 'include',
+    //         body: JSON.stringify({
+    //         employeeId: employee_id,
+    //         })
+    //     });
+
+    //     const message = await response.json();
+    //     //if ticket has an error then alert there was an error.
+    //     if (message.message != "DELETED") {
+    //         alert("ERROR WITH DELETING EMPLOYEE");
+    //         return;
+    //     }
+
+    //     let copyOfEmployees = employees;
+    //     copyOfEmployees = employees.filter((employee) => {
+    //         if(employee.Employee_ID != employee_id) {
+    //         return employee;
+    //         }
+    //     })
+    //     setInvoices(copyOfEmployees);
+    // }
+    // <div className="delete-x" onClick={() => deleteEmployee(employee.Employee_ID)}>
+    //     <AiFillDelete size="35px" />
+    // </div>
 
     useEffect(() => {
         async function fetchEmployees() {
