@@ -52,7 +52,7 @@ export default function AddEmployee(){
       setSubmitError("Failed to create account, try again");
     }
     else {
-      navigate("/..");
+      alert("Success!");
     }
   }
 

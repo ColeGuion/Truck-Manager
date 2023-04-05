@@ -83,7 +83,7 @@ export default function HomeScreen(){
             </button>
           </div>
           <img className="logo-header2" src={logo} alt="Logo" />
-            <div classname="home-btns-container">
+            <div className="home-btns-container">
             <button className="home-btns" onClick = { () => navigate("/loadinvoice") }>
               Submit Load Ticket
               <br/><br/>

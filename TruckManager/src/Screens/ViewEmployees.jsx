@@ -52,8 +52,6 @@ function FilterOptions(props) {
     );
 }
 
-
-
 export default function ViewEmployees() {
     const [employees, setEmployees] = useState([{}]);
     const [filterOption, setFilterOption] = useState("Name");
@@ -65,40 +63,38 @@ export default function ViewEmployees() {
         Created: 3/1/2023
         Description: makes request to backend to delete this load ticket
     */
-    // async function deleteEmployee(employee_id) {
-    //     if(confirm("Delete this employee?") == false){
-    //         return;
-    //     }
-    //     const response = await fetch(`${API_URL}/deleteemployee`, {
-    //         method: 'DELETE',
-    //         headers: {
-    //         'Accept': 'application/json',
-    //         'Content-Type': 'application/json'
-    //         },
-    //         credentials: 'include',
-    //         body: JSON.stringify({
-    //         employeeId: employee_id,
-    //         })
-    //     });
+    async function deleteEmployee(employee_id) {
+        if(confirm("Delete this employee?") == false){
+            return;
+        }
+        const response = await fetch(`${APIURL}/deleteemployee`, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                employeeId: employee_id,
+            })
+        });
 
-    //     const message = await response.json();
-    //     //if ticket has an error then alert there was an error.
-    //     if (message.message != "DELETED") {
-    //         alert("ERROR WITH DELETING EMPLOYEE");
-    //         return;
-    //     }
+        const message = await response.json();
+        //if ticket has an error then alert there was an error.
+        if (message.message != "DELETED") {
+            alert("ERROR WITH DELETING EMPLOYEE");
+            return;
+        }
 
-    //     let copyOfEmployees = employees;
-    //     copyOfEmployees = employees.filter((employee) => {
-    //         if(employee.Employee_ID != employee_id) {
-    //         return employee;
-    //         }
-    //     })
-    //     setInvoices(copyOfEmployees);
-    // }
-    // <div className="delete-x" onClick={() => deleteEmployee(employee.Employee_ID)}>
-    //     <AiFillDelete size="35px" />
-    // </div>
+        let copyOfEmployees = employees;
+        copyOfEmployees = employees.filter((employee) => {
+            if(employee.Employee_ID != employee_id) {
+                return employee;
+            }
+        })
+        setEmployees(copyOfEmployees);
+    }
+    
 
     useEffect(() => {
         async function fetchEmployees() {
@@ -130,6 +126,9 @@ export default function ViewEmployees() {
           .map((employee, idx) => {
                 return (
                     <div className="user-info-container" key={idx}>
+                        <span className="delete-x" onClick={() => deleteEmployee(employee.Employee_ID)}>
+                            <AiFillDelete size="35px" />
+                        </span>
                         <span className="info">Name:  {employee.Name || "N/A"}</span>
                         <span className="info">Employee ID:  {employee.Employee_ID || "N/A"}</span>
                         <span className="info">Email:  {employee.Email || "N/A"}</span>
