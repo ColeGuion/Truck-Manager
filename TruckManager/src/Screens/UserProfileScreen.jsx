@@ -167,6 +167,7 @@ export default function UserProfileScreen({ navigation }){
             <input className="info-read-only" id="email" readOnly value={currentUser.email}/>
             <input className="info-update" id="street" onChange={handleChange} value={currentUser.street}/>
             <select className="info-select" id="state" maxLength={2} onChange={handleChange} value={currentUser.state}>
+              <option hidden></option>
               <option value="AL">AL</option>
               <option value="AK">AK</option>
               <option value="AR">AR</option>
