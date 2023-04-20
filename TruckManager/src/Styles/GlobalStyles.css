@@ -124,6 +124,9 @@
     width: 250px;
     right: 35%;
 }
+.logo-left:hover {
+    cursor: pointer;
+}
 
 .header {
     position: absolute;
